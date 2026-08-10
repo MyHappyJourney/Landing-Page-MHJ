@@ -1,32 +1,121 @@
 import React from 'react';
 
 interface LogoProps {
-  variant?: 'default' | 'light';
-  size?: 'sm' | 'md' | 'lg';
-  className?: string;
+variant?: 'default' | 'light';
+size?: 'sm' | 'md' | 'lg';
+className?: string;
 }
 
-export const Logo: React.FC<LogoProps> = ({
-  variant = 'default',
-  size = 'md',
-  className = '',
-}) => {
-  const heights = {
-    sm: 'h-8 sm:h-9',
-    md: 'h-11 sm:h-12',
-    lg: 'h-14 sm:h-16',
-  };
+export const Logo: React.FC = ({ variant = 'default', size = 'md', className = '' }) => {
+const isLight = variant === 'light';
 
-  return (
-    <div
-      className={`inline-flex items-center select-none ${heights[size]} ${className}`}
+// Heights for the whole logo in pixels
+const heights = {
+sm: 'h-8 sm:h-9',
+md: 'h-11 sm:h-12',
+lg: 'h-14 sm:h-16'
+}[size];
+
+const textColor = isLight ? '#FFFFFF' : '#0B3996';
+const lineColor = isLight ? '#93C5FD' : '#8A9EC7';
+
+return (
+<div className={inline-flex items-center select-none ${heights} ${className}}>
+
+{/* RED BADGE (Left) /}
+
+{/ Badge Background with rounded top-left corner */}
+
+      {/* White 'M' (Top letter inside badge) */}
+      <text
+        x="50"
+        y="76"
+        fill="white"
+        fontFamily="'Georgia', 'Times New Roman', 'Playfair Display', serif"
+        fontWeight="900"
+        fontSize="72"
+        textAnchor="middle"
+        letterSpacing="-1"
+      >
+        M
+      </text>
+
+      {/* White 'Y' (Bottom letter inside badge) */}
+      <text
+        x="50"
+        y="148"
+        fill="white"
+        fontFamily="'Georgia', 'Times New Roman', 'Playfair Display', serif"
+        fontWeight="900"
+        fontSize="72"
+        textAnchor="middle"
+        letterSpacing="-1"
+      >
+        Y
+      </text>
+    </g>
+
+    {/* TEXT SECTION (Right) */}
+    {/* Word 1: Happy */}
+    <text
+      x="122"
+      y="66"
+      fill={textColor}
+      fontFamily="'Georgia', 'Times New Roman', 'Playfair Display', serif"
+      fontWeight="900"
+      fontSize="72"
+      letterSpacing="-1.5"
     >
-      <img
-        src="/logo.png"
-        alt="MyHappyJourney"
-        className="h-full w-auto object-contain"
-        draggable={false}
-      />
-    </div>
-  );
+      Happy
+    </text>
+
+    {/* Word 2: Journey */}
+    <text
+      x="118"
+      y="136"
+      fill={textColor}
+      fontFamily="'Georgia', 'Times New Roman', 'Playfair Display', serif"
+      fontWeight="900"
+      fontSize="72"
+      letterSpacing="-1.5"
+    >
+      Journey
+    </text>
+
+    {/* SUB-LINE: SINCE 2007 with flanking lines */}
+    <line
+      x1="122"
+      y1="168"
+      x2="192"
+      y2="168"
+      stroke={lineColor}
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+    <text
+      x="280"
+      y="173"
+      fill={textColor}
+      fontFamily="'Inter', 'Arial', sans-serif"
+      fontWeight="800"
+      fontSize="17"
+      letterSpacing="6.5"
+      textAnchor="middle"
+    >
+      SINCE 2007
+    </text>
+    <line
+      x1="368"
+      y1="168"
+      x2="438"
+      y2="168"
+      stroke={lineColor}
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+  </svg>
+</div>
+
+
+);
 };
