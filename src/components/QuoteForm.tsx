@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LeadFormData } from '../types';
 import { submitLead } from '../services/leadService';
-import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User, DollarSign } from 'lucide-react';
+import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User, DollarSign, Mail, ExternalLink } from 'lucide-react';
 import { WHATSAPP_NUMBER, PACKAGES } from '../data/tourData';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -13,6 +13,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
   const [formData, setFormData] = useState<LeadFormData>({
     name: '',
     phone: '',
+    email: '',
     travelDate: '',
     adults: 2,
     children: 0,
@@ -22,8 +23,30 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
 
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [countdown, setCountdown] = useState(5);
   const [leadId, setLeadId] = useState<string | undefined>(undefined);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Auto redirect after submission
+  useEffect(() => {
+    let timer: any;
+    if (submitted) {
+      setCountdown(5);
+      timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            window.location.href = 'https://www.myhappyjourney.com/holidays/kerala';
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [submitted]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,14 +116,29 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
                 )}
               </div>
 
-              <div className="pt-4 max-w-sm mx-auto space-y-3">
+              <div className="pt-2 max-w-sm mx-auto space-y-3">
+                <div className="bg-[#EBF2FF] border border-[#0B3996]/20 rounded-xl p-3 text-xs text-[#0B3996] font-medium space-y-1 text-center">
+                  <p className="font-bold text-xs sm:text-sm">
+                    ⌛ Redirecting to MyHappyJourney in <span className="text-base font-extrabold text-[#FF4B00]">{countdown}s</span>...
+                  </p>
+                  <p className="text-[11px] text-gray-600">You will be automatically redirected to www.myhappyjourney.com/holidays/kerala</p>
+                </div>
+
+                <a
+                  href="https://www.myhappyjourney.com/holidays/kerala"
+                  className="w-full h-11 bg-[#0B3996] hover:bg-[#082b75] text-white font-extrabold rounded-xl flex items-center justify-center gap-2 shadow-md transition-all text-xs sm:text-sm"
+                >
+                  <span>Go to MyHappyJourney Now</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full h-12 bg-[#25D366] hover:bg-[#20bd5a] text-white font-extrabold rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all text-sm"
+                  className="w-full h-11 bg-[#25D366] hover:bg-[#20bd5a] text-white font-extrabold rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all text-xs sm:text-sm"
                 >
-                  <WhatsAppIcon className="w-5 h-5 fill-white" />
+                  <WhatsAppIcon className="w-4 h-4 fill-white" />
                   <span>WhatsApp Us Now for Instant Reply</span>
                 </a>
 
@@ -110,6 +148,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
                     setFormData({
                       name: '',
                       phone: '',
+                      email: '',
                       travelDate: '',
                       adults: 2,
                       children: 0,
@@ -146,8 +185,8 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
 
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                 
-                {/* Row 1: Name & Phone */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Row 1: Name, Phone & Email */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {/* Name */}
                   <div>
                     <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1">
@@ -182,8 +221,27 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="10-digit Mobile No. (e.g. 9876543210)"
+                        placeholder="10-digit Mobile No."
                         maxLength={13}
+                        className="w-full pl-10 pr-4 h-12 bg-gray-50 border border-gray-300 rounded-xl text-sm text-gray-900 focus:bg-white focus:border-[#0B3996] focus:ring-2 focus:ring-[#0B3996]/20 transition-all outline-none font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email Address */}
+                  <div>
+                    <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1">
+                      Email Address
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                        <Mail className="w-4 h-4" />
+                      </div>
+                      <input
+                        type="email"
+                        value={formData.email || ''}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="e.g. rahul@example.com"
                         className="w-full pl-10 pr-4 h-12 bg-gray-50 border border-gray-300 rounded-xl text-sm text-gray-900 focus:bg-white focus:border-[#0B3996] focus:ring-2 focus:ring-[#0B3996]/20 transition-all outline-none font-medium"
                       />
                     </div>

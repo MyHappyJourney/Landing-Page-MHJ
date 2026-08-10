@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LeadFormData } from '../types';
 import { submitLead } from '../services/leadService';
-import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User, DollarSign, X } from 'lucide-react';
+import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User, DollarSign, X, Mail, ExternalLink } from 'lucide-react';
 import { WHATSAPP_NUMBER, PACKAGES } from '../data/tourData';
 import { Logo } from './Logo';
 import { WhatsAppIcon } from './WhatsAppIcon';
@@ -20,6 +20,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   const [formData, setFormData] = useState<LeadFormData>({
     name: '',
     phone: '',
+    email: '',
     travelDate: '',
     adults: 2,
     children: 0,
@@ -29,8 +30,44 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
 
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [countdown, setCountdown] = useState(5);
   const [leadId, setLeadId] = useState<string | undefined>(undefined);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Auto redirect after submission
+  useEffect(() => {
+    let timer: any;
+    if (submitted) {
+      setCountdown(5);
+      timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            window.location.href = 'https://www.myhappyjourney.com/holidays/kerala';
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [submitted]);
+
+  const handleReset = () => {
+    setSubmitted(false);
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      travelDate: '',
+      adults: 2,
+      children: 0,
+      budget: '',
+      packagePreference: preselectedPackageId || 'pkg-6n7d'
+    });
+  };
 
   // Sync packagePreference when preselectedPackageId changes
   useEffect(() => {
@@ -91,19 +128,6 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   );
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`;
 
-  const handleReset = () => {
-    setSubmitted(false);
-    setFormData({
-      name: '',
-      phone: '',
-      travelDate: '',
-      adults: 2,
-      children: 0,
-      budget: '',
-      packagePreference: preselectedPackageId || 'pkg-6n7d'
-    });
-  };
-
   return (
     <div
       className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto animate-fade-in"
@@ -157,13 +181,28 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
               </div>
 
               <div className="pt-2 max-w-sm mx-auto space-y-3">
+                <div className="bg-[#EBF2FF] border border-[#0B3996]/20 rounded-xl p-3 text-xs text-[#0B3996] font-medium space-y-1 text-center">
+                  <p className="font-bold text-xs sm:text-sm">
+                    ⌛ Redirecting to MyHappyJourney in <span className="text-base font-extrabold text-[#FF4B00]">{countdown}s</span>...
+                  </p>
+                  <p className="text-[11px] text-gray-600">You will be automatically redirected to www.myhappyjourney.com/holidays/kerala</p>
+                </div>
+
+                <a
+                  href="https://www.myhappyjourney.com/holidays/kerala"
+                  className="w-full h-11 bg-[#0B3996] hover:bg-[#082b75] text-white font-extrabold rounded-xl flex items-center justify-center gap-2 shadow-md transition-all text-xs sm:text-sm"
+                >
+                  <span>Go to MyHappyJourney Now</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full h-12 bg-[#25D366] hover:bg-[#20bd5a] text-white font-extrabold rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all text-sm"
+                  className="w-full h-11 bg-[#25D366] hover:bg-[#20bd5a] text-white font-extrabold rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all text-xs sm:text-sm"
                 >
-                  <WhatsAppIcon className="w-5 h-5 fill-white" />
+                  <WhatsAppIcon className="w-4 h-4 fill-white" />
                   <span>WhatsApp Us Now for Instant Reply</span>
                 </a>
 
@@ -197,8 +236,8 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
               )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Row 1: Name & Phone */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {/* Row 1: Name, Phone & Email */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
                   {/* Name */}
                   <div>
                     <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1">
@@ -235,6 +274,25 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="10-digit Mobile No."
                         maxLength={13}
+                        className="w-full pl-9 pr-3 h-11 bg-gray-50 border border-gray-300 rounded-xl text-xs sm:text-sm text-gray-900 focus:bg-white focus:border-[#0B3996] focus:ring-2 focus:ring-[#0B3996]/20 transition-all outline-none font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email Address */}
+                  <div>
+                    <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1">
+                      Email Address
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                        <Mail className="w-4 h-4" />
+                      </div>
+                      <input
+                        type="email"
+                        value={formData.email || ''}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="e.g. rahul@example.com"
                         className="w-full pl-9 pr-3 h-11 bg-gray-50 border border-gray-300 rounded-xl text-xs sm:text-sm text-gray-900 focus:bg-white focus:border-[#0B3996] focus:ring-2 focus:ring-[#0B3996]/20 transition-all outline-none font-medium"
                       />
                     </div>

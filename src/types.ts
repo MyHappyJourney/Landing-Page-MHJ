@@ -36,6 +36,7 @@ export interface Review {
 export interface LeadFormData {
   name: string;
   phone: string;
+  email?: string;
   travelDate: string;
   adults: number;
   children: number;
