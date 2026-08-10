@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LeadFormData } from '../types';
 import { submitLead } from '../services/leadService';
-import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User, DollarSign, Mail, ExternalLink } from 'lucide-react';
+import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User, DollarSign, Mail, ExternalLink, Sparkles } from 'lucide-react';
 import { WHATSAPP_NUMBER, PACKAGES } from '../data/tourData';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -26,6 +26,19 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
   const [countdown, setCountdown] = useState(5);
   const [leadId, setLeadId] = useState<string | undefined>(undefined);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Calculate form completion progress percentage
+  const getFormProgress = () => {
+    let score = 0;
+    if (formData.name.trim().length >= 2) score += 25;
+    const cleanPhone = formData.phone.replace(/\D/g, '');
+    if (cleanPhone.length >= 10) score += 35;
+    if (formData.travelDate) score += 25;
+    if ((formData.email && formData.email.includes('@')) || formData.packagePreference || formData.budget) score += 15;
+    return Math.min(score, 100);
+  };
+
+  const formProgress = getFormProgress();
 
   // Auto redirect after submission
   useEffect(() => {
@@ -165,7 +178,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
           ) : (
             /* Lead Form View */
             <div>
-              <div className="text-center max-w-2xl mx-auto mb-8">
+              <div className="text-center max-w-2xl mx-auto mb-6">
                 <span className="bg-[#EBF2FF] text-[#0B3996] font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full border border-[#0B3996]/20">
                   FREE CUSTOMIZED QUOTE
                 </span>
@@ -175,6 +188,37 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
                 <p className="text-xs sm:text-sm font-semibold text-gray-600 mt-1.5">
                   Just fill in your details and we will call you within 30 minutes!
                 </p>
+              </div>
+
+              {/* Form Fill Progress Indicator */}
+              <div className="mb-6 bg-[#F8FAFC] p-3.5 rounded-2xl border border-gray-200 shadow-2xs">
+                <div className="flex items-center justify-between text-xs font-extrabold mb-1.5">
+                  <span className="text-gray-800 flex items-center gap-1.5">
+                    <Sparkles className="w-4 h-4 text-[#FF4B00] animate-pulse" />
+                    <span>Form Fill Progress</span>
+                  </span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-black ${
+                    formProgress === 100
+                      ? 'bg-emerald-100 text-emerald-700'
+                      : 'bg-[#EBF2FF] text-[#0B3996]'
+                  }`}>
+                    {formProgress}% {formProgress === 100 ? '🎉 Ready to Get Quote!' : 'Completed'}
+                  </span>
+                </div>
+                <div className="w-full bg-gray-200 h-2.5 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-[#0B3996] via-[#2563eb] to-[#FF4B00] transition-all duration-500 rounded-full"
+                    style={{ width: `${formProgress}%` }}
+                  />
+                </div>
+                {formProgress < 100 && (
+                  <p className="text-[11px] text-gray-500 font-medium mt-1 text-right">
+                    {formProgress < 25 && "Step 1: Enter your name"}
+                    {formProgress >= 25 && formProgress < 60 && "Step 2: Enter 10-digit mobile number"}
+                    {formProgress >= 60 && formProgress < 85 && "Step 3: Pick travel date"}
+                    {formProgress >= 85 && "Step 4: Click 'Get Instant Quote'"}
+                  </p>
+                )}
               </div>
 
               {errorMessage && (

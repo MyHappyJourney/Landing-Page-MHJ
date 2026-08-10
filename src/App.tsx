@@ -3,7 +3,6 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { TrustStrip } from './components/TrustStrip';
 import { PackageSection } from './components/PackageSection';
-import { DestinationsSection } from './components/DestinationsSection';
 import { PackageModal } from './components/PackageModal';
 import { QuoteModal } from './components/QuoteModal';
 import { Itinerary } from './components/Itinerary';
@@ -61,12 +60,7 @@ export default function App() {
         {/* 7. Package Inclusions & Exclusions */}
         <InclusionsExclusions />
 
-        {/* 8. Destination Specific Highlights Showcase */}
-        <DestinationsSection
-          onGetQuote={() => openQuoteModal()}
-        />
-
-        {/* 9. Why Book With MyHappyJourney */}
+        {/* 8. Why Book With MyHappyJourney */}
         <WhyBook />
 
         {/* 9. Get Your Customised Quote (Lead Form) */}

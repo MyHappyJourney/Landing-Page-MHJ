@@ -307,6 +307,16 @@ export const FAQS: FAQItem[] = [
 
 export const TRUST_ITEMS: TrustItem[] = [
   {
+    iconName: "Google",
+    title: "Google 4.9 / 5 ⭐",
+    subtitle: "2,500+ Reviews"
+  },
+  {
+    iconName: "ShieldCheck",
+    title: "ISO Certified",
+    subtitle: "ISO 9001:2015 Quality"
+  },
+  {
     iconName: "Award",
     title: "Kerala Experts",
     subtitle: "18+ Years Experience"

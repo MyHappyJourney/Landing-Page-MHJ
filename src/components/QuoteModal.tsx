@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LeadFormData } from '../types';
 import { submitLead } from '../services/leadService';
-import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User, DollarSign, X, Mail, ExternalLink } from 'lucide-react';
+import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User, DollarSign, X, Mail, ExternalLink, Sparkles } from 'lucide-react';
 import { WHATSAPP_NUMBER, PACKAGES } from '../data/tourData';
 import { Logo } from './Logo';
 import { WhatsAppIcon } from './WhatsAppIcon';
@@ -33,6 +33,19 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   const [countdown, setCountdown] = useState(5);
   const [leadId, setLeadId] = useState<string | undefined>(undefined);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Calculate form completion progress percentage
+  const getFormProgress = () => {
+    let score = 0;
+    if (formData.name.trim().length >= 2) score += 25;
+    const cleanPhone = formData.phone.replace(/\D/g, '');
+    if (cleanPhone.length >= 10) score += 35;
+    if (formData.travelDate) score += 25;
+    if ((formData.email && formData.email.includes('@')) || formData.packagePreference || formData.budget) score += 15;
+    return Math.min(score, 100);
+  };
+
+  const formProgress = getFormProgress();
 
   // Auto redirect after submission
   useEffect(() => {
@@ -217,7 +230,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
           ) : (
             /* Lead Form View */
             <div>
-              <div className="text-center max-w-xl mx-auto mb-6">
+              <div className="text-center max-w-xl mx-auto mb-4">
                 <span className="bg-[#EBF2FF] text-[#0B3996] font-bold text-[11px] sm:text-xs uppercase tracking-widest px-3 py-1 rounded-full border border-[#0B3996]/20">
                   FREE CUSTOMIZED QUOTE
                 </span>
@@ -227,6 +240,29 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                 <p className="text-xs font-semibold text-gray-600 mt-1">
                   Fill details below & our Kerala expert will call you within 30 minutes!
                 </p>
+              </div>
+
+              {/* Form Fill Progress Bar */}
+              <div className="mb-5 bg-[#F8FAFC] p-3 rounded-2xl border border-gray-200 shadow-2xs">
+                <div className="flex items-center justify-between text-xs font-extrabold mb-1">
+                  <span className="text-gray-800 flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#FF4B00] animate-pulse" />
+                    <span>Form Fill Progress</span>
+                  </span>
+                  <span className={`text-[11px] px-2 py-0.5 rounded-full font-black ${
+                    formProgress === 100
+                      ? 'bg-emerald-100 text-emerald-700'
+                      : 'bg-[#EBF2FF] text-[#0B3996]'
+                  }`}>
+                    {formProgress}% {formProgress === 100 ? '🎉 Ready!' : 'Completed'}
+                  </span>
+                </div>
+                <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-[#0B3996] via-[#2563eb] to-[#FF4B00] transition-all duration-500 rounded-full"
+                    style={{ width: `${formProgress}%` }}
+                  />
+                </div>
               </div>
 
               {errorMessage && (
