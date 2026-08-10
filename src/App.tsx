@@ -46,22 +46,22 @@ export default function App() {
         {/* 3. Trust Strip */}
         <TrustStrip />
 
-        {/* 4. Choose Your Kerala Tour (Package Cards & Carousel) */}
+        {/* 4. Tour Itinerary (6N / 7D) */}
+        <Itinerary />
+
+        {/* 5. Choose Your Kerala Tour (Package Cards & Carousel) */}
         <PackageSection
           onViewDetails={(pkg) => setSelectedPackageForModal(pkg)}
           onGetQuote={(pkg) => openQuoteModal(pkg.id)}
         />
 
-        {/* 5. Destination Specific Highlights Showcase */}
+        {/* 6. Destination Specific Highlights Showcase */}
         <DestinationsSection
           onGetQuote={() => openQuoteModal()}
         />
 
-        {/* 6. Loved By 5000+ Happy Travellers (Customer Reviews) */}
+        {/* 7. Loved By 5000+ Happy Travellers (Customer Reviews) */}
         <Reviews />
-
-        {/* 6. Tour Itinerary (6N / 7D) */}
-        <Itinerary />
 
         {/* 7. Package Inclusions & Exclusions */}
         <InclusionsExclusions />
