@@ -36,30 +36,19 @@ export const Logo: React.FC<LogoProps> = ({ variant = 'default', size = 'md', cl
             fill="#FF3000"
           />
 
-          {/* White 'M' (Top letter inside badge) */}
+          {/* White 'MY' (Rotated 270 degrees inside badge facing right) */}
           <text
             x="50"
-            y="74"
+            y="85"
             fill="white"
             fontFamily="'Georgia', 'Times New Roman', serif"
             fontWeight="900"
-            fontSize="68"
+            fontSize="64"
             textAnchor="middle"
+            dominantBaseline="central"
+            transform="rotate(270, 50, 85)"
           >
-            M
-          </text>
-
-          {/* White 'Y' (Bottom letter inside badge) */}
-          <text
-            x="50"
-            y="145"
-            fill="white"
-            fontFamily="'Georgia', 'Times New Roman', serif"
-            fontWeight="900"
-            fontSize="68"
-            textAnchor="middle"
-          >
-            Y
+            MY
           </text>
         </g>
 

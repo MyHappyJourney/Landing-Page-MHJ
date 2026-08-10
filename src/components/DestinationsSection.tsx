@@ -62,7 +62,7 @@ const DESTINATIONS: DestinationItem[] = [
     name: "Wayanad",
     title: "Wayanad Hills & Caves",
     subtitle: "Edakkal ancient caves, Banasura Sagar Dam & heart-shaped lake",
-    image: "https://images.unsplash.com/photo-1609949279531-cf48d64bed89?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
     tags: ["Chembra Peak", "Edakkal Caves", "Waterfalls", "Bamboo Forests"],
     recommendedDays: "2 - 3 Days"
   },
@@ -71,7 +71,7 @@ const DESTINATIONS: DestinationItem[] = [
     name: "Jatayu Rock",
     title: "Jatayu Earth's Center",
     subtitle: "World's largest bird sculpture atop a giant rock with cable car ride",
-    image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
     tags: ["World Record Statue", "Cable Car", "Panoramic Views", "Mythological Heritage"],
     recommendedDays: "Half Day"
   },
@@ -125,6 +125,9 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({ onGetQ
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90"
                   loading="lazy"
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80";
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 

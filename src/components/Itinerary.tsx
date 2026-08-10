@@ -48,6 +48,9 @@ export const Itinerary: React.FC = () => {
                     alt={day.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80";
+                    }}
                   />
                 </div>
 
@@ -102,6 +105,9 @@ export const Itinerary: React.FC = () => {
                         alt={day.title}
                         className="w-12 h-12 rounded-lg object-cover shrink-0 border border-gray-100 shadow-xs"
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          e.currentTarget.src = "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80";
+                        }}
                       />
                       <div>
                         <h3 className="font-extrabold text-sm sm:text-base text-gray-900 leading-snug">

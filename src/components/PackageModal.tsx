@@ -27,6 +27,9 @@ export const PackageModal: React.FC<PackageModalProps> = ({ pkg, onClose, onGetQ
             alt={pkg.title}
             className="w-full h-full object-cover opacity-80"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              e.currentTarget.src = "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80";
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
           

@@ -19,6 +19,9 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick }) => {
           alt="Kerala Houseboat Backwaters Alleppey"
           className="w-full h-full object-cover object-center opacity-45 scale-105 transition-transform duration-1000"
           referrerPolicy="no-referrer"
+          onError={(e) => {
+            e.currentTarget.src = "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1920&q=85";
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/60 to-black/50" />
       </div>

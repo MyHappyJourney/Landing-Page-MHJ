@@ -91,7 +91,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
     dayNumber: 1,
     title: "Cochin → Munnar",
     route: "Arrival & Transfer to Hill Station",
-    image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80",
     stayLocation: "Munnar",
     highlights: [
       "Cheeyappara & Valara Waterfalls",
@@ -104,7 +104,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
     dayNumber: 2,
     title: "Munnar Sightseeing",
     route: "Full Day Tea Country Exploration",
-    image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80",
     stayLocation: "Munnar",
     highlights: [
       "Eravikulam National Park (Nilgiri Tahr)",
@@ -118,7 +118,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
     dayNumber: 3,
     title: "Munnar → Thekkady",
     route: "Wildlife Sanctuary & Spice Valley",
-    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1581852017103-68accd5509b6?auto=format&fit=crop&w=800&q=80",
     stayLocation: "Thekkady",
     highlights: [
       "Periyar Wildlife Sanctuary Lake Cruise",
@@ -132,7 +132,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
     dayNumber: 4,
     title: "Thekkady → Alleppey",
     route: "Overnight Houseboat Experience",
-    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80",
     stayLocation: "Alleppey Houseboat",
     highlights: [
       "Private Deluxe Houseboat Cruise",
@@ -146,7 +146,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
     dayNumber: 5,
     title: "Alleppey → Kovalam",
     route: "Backwaters to Golden Beaches",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
     stayLocation: "Kovalam",
     highlights: [
       "Lighthouse Beach Walk",
@@ -159,7 +159,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
     dayNumber: 6,
     title: "Kovalam & Poovar Island",
     route: "Coastal Paradise & Mangrove Boating",
-    image: "https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=800&q=80",
     stayLocation: "Kovalam",
     highlights: [
       "Poovar Island Mangrove Forest Boating (Optional)",
@@ -171,15 +171,15 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
   {
     dayNumber: 7,
     title: "Trivandrum Departure",
-    route: "Local Shopping & Airport Drop",
-    image: "https://images.unsplash.com/photo-1609949279531-cf48d64bed89?auto=format&fit=crop&w=600&q=80",
+    route: "Sree Padmanabhaswamy Temple & Drop",
+    image: "https://images.unsplash.com/photo-1600100397608-f020f7e43950?auto=format&fit=crop&w=800&q=80",
     stayLocation: "Homebound",
     highlights: [
+      "Sree Padmanabhaswamy Temple Heritage Visit",
       "Trivandrum Handicrafts & Spice Shopping",
-      "Kanakakkunnu Palace & Napier Museum",
       "Transfer to Trivandrum Airport / Railway Station"
     ],
-    description: "Enjoy breakfast at your resort. Time permitting, indulge in souvenir shopping for spices, banana chips, and handicrafts in Trivandrum. Our driver drops you at Trivandrum Airport/Railway Station with wonderful memories of Kerala."
+    description: "Enjoy breakfast at your resort. Visit the sacred Sree Padmanabhaswamy Temple in Trivandrum. Time permitting, indulge in souvenir shopping for spices, banana chips, and handicrafts. Our driver drops you at Trivandrum Airport/Railway Station with wonderful memories."
   }
 ];
 

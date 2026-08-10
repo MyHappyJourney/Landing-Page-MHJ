@@ -55,18 +55,18 @@ export default function App() {
           onGetQuote={(pkg) => openQuoteModal(pkg.id)}
         />
 
-        {/* 6. Destination Specific Highlights Showcase */}
-        <DestinationsSection
-          onGetQuote={() => openQuoteModal()}
-        />
-
-        {/* 7. Loved By 5000+ Happy Travellers (Customer Reviews) */}
+        {/* 6. Loved By 5000+ Happy Travellers (Customer Reviews) */}
         <Reviews />
 
         {/* 7. Package Inclusions & Exclusions */}
         <InclusionsExclusions />
 
-        {/* 8. Why Book With MyHappyJourney */}
+        {/* 8. Destination Specific Highlights Showcase */}
+        <DestinationsSection
+          onGetQuote={() => openQuoteModal()}
+        />
+
+        {/* 9. Why Book With MyHappyJourney */}
         <WhyBook />
 
         {/* 9. Get Your Customised Quote (Lead Form) */}
