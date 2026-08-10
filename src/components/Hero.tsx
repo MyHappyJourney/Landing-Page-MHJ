@@ -15,15 +15,15 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick }) => {
       {/* Background Hero Image with Dark Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1920&q=85"
+          src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=2560&q=90"
           alt="Kerala Houseboat Backwaters Alleppey"
-          className="w-full h-full object-cover object-center opacity-45 scale-105 transition-transform duration-1000"
+          className="w-full h-full object-cover object-center opacity-80 scale-105 transition-all duration-1000 brightness-105"
           referrerPolicy="no-referrer"
           onError={(e) => {
-            e.currentTarget.src = "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1920&q=85";
+            e.currentTarget.src = "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=2560&q=90";
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/60 to-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/50 to-black/30" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-10 sm:pb-16">
