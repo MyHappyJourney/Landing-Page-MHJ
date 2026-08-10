@@ -176,6 +176,14 @@ export const Header: React.FC<HeaderProps> = ({ onQuoteClick, onPackageSelect })
                 </div>
 
                 <button
+                  onClick={() => handleNavClick(undefined, 'destinations-section')}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-[#EBF2FF] hover:text-[#0B3996] flex items-center justify-between"
+                >
+                  <span className="font-semibold text-[#0B3996]">Top Destinations & Photos</span>
+                  <ChevronRight className="w-4 h-4 text-gray-400" />
+                </button>
+
+                <button
                   onClick={() => handleNavClick(undefined, 'itinerary-section')}
                   className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-[#EBF2FF] hover:text-[#0B3996] flex items-center justify-between"
                 >

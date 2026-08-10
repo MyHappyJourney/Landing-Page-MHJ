@@ -344,9 +344,14 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {/* Adults Counter */}
                   <div>
-                    <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1">
-                      No. of Adults (12+ Yrs)
-                    </label>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider">
+                        No. of Adults (12+ Yrs)
+                      </label>
+                      <span className="text-[10px] font-bold text-[#FF4B00] bg-orange-50 px-1.5 py-0.5 rounded border border-orange-200">
+                        Min 2
+                      </span>
+                    </div>
                     <div className="flex items-center bg-gray-50 border border-gray-300 rounded-xl h-11 px-3 justify-between">
                       <span className="text-xs font-semibold text-gray-600 flex items-center gap-1.5">
                         <Users className="w-3.5 h-3.5 text-gray-400" />
@@ -355,8 +360,14 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                       <div className="flex items-center gap-2.5">
                         <button
                           type="button"
-                          onClick={() => setFormData({ ...formData, adults: Math.max(1, formData.adults - 1) })}
-                          className="w-7 h-7 rounded-lg bg-gray-200 text-gray-800 font-black text-sm flex items-center justify-center hover:bg-gray-300"
+                          disabled={formData.adults <= 2}
+                          onClick={() => setFormData({ ...formData, adults: Math.max(2, formData.adults - 1) })}
+                          className={`w-7 h-7 rounded-lg font-black text-sm flex items-center justify-center transition-colors ${
+                            formData.adults <= 2
+                              ? 'bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200'
+                              : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                          }`}
+                          title={formData.adults <= 2 ? "Minimum 2 adults required" : "Decrease adults"}
                         >
                           -
                         </button>
