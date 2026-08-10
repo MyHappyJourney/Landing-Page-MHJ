@@ -103,10 +103,10 @@ export const Footer: React.FC<FooterProps> = ({ onQuoteClick }) => {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4 text-center sm:text-left">
           <p>© 2007–{new Date().getFullYear()} MyHappyJourney. All Rights Reserved.</p>
-          <p className="flex items-center gap-1 justify-center">
+          <p className="flex items-center gap-1.5 justify-center font-medium">
             <span>Crafted with</span>
             <Heart className="w-3.5 h-3.5 text-red-500 fill-current" />
-            <span>for Kerala Tourism Travellers</span>
+            <span>by <strong className="text-gray-300 font-bold">MyHappyJourney</strong></span>
           </p>
           <div className="flex items-center gap-4 text-[11px]">
             <a href="#" className="hover:underline">Privacy Policy</a>
