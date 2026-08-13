@@ -13,7 +13,7 @@ interface PackageModalProps {
 export const PackageModal: React.FC<PackageModalProps> = ({ pkg, onClose, onGetQuote }) => {
   if (!pkg) return null;
 
-  const priceLabel = pkg.id === 'pkg-6n7d' ? `₹${pkg.price.toLocaleString('en-IN')}` : 'Best Price Quote';
+  const priceLabel = 'Best Price Quote';
   const whatsappMsg = encodeURIComponent(`Hi MyHappyJourney, I want more details regarding the "${pkg.title}" (${priceLabel}). Please contact me.`);
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`;
 
@@ -53,31 +53,14 @@ export const PackageModal: React.FC<PackageModalProps> = ({ pkg, onClose, onGetQ
         <div className="p-5 sm:p-6 overflow-y-auto space-y-5">
           {/* Price Box */}
           <div className="bg-[#EBF2FF] p-4 rounded-xl border border-[#0B3996]/30 flex items-center justify-between">
-            {pkg.id === 'pkg-6n7d' ? (
-              <div>
-                <p className="text-xs font-bold text-[#0B3996] uppercase">Package Special Price</p>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-2xl sm:text-3xl font-black text-[#0B3996]">
-                    ₹{pkg.price.toLocaleString('en-IN')}*
-                  </span>
-                  {pkg.originalPrice && (
-                    <span className="text-xs text-gray-500 line-through">
-                      ₹{pkg.originalPrice.toLocaleString('en-IN')}
-                    </span>
-                  )}
-                  <span className="text-xs text-[#0B3996] font-bold">/ person (min 2 pax)</span>
-                </div>
+            <div>
+              <p className="text-xs font-bold text-[#0B3996] uppercase">Package Special Offer</p>
+              <div className="flex items-baseline gap-2 mt-0.5">
+                <span className="text-xl sm:text-2xl font-black text-[#0B3996]">
+                  GET BEST QUOTE →
+                </span>
               </div>
-            ) : (
-              <div>
-                <p className="text-xs font-bold text-[#0B3996] uppercase">Package Special Offer</p>
-                <div className="flex items-baseline gap-2 mt-0.5">
-                  <span className="text-xl sm:text-2xl font-black text-[#0B3996]">
-                    GET BEST PRICE →
-                  </span>
-                </div>
-              </div>
-            )}
+            </div>
             <span className="text-xs font-semibold text-[#0B3996] bg-white px-3 py-1.5 rounded-lg border border-[#0B3996]/20 shadow-2xs">
               Customizable Itinerary
             </span>
@@ -132,7 +115,7 @@ export const PackageModal: React.FC<PackageModalProps> = ({ pkg, onClose, onGetQ
             }}
             className="w-full py-3 bg-[#FF4B00] hover:bg-[#e04200] text-white font-extrabold rounded-xl text-center text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md"
           >
-            <span>Get Customised Quote</span>
+            <span>Get Best Quote</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

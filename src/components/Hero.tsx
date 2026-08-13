@@ -101,15 +101,15 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick }) => {
               {/* Price Header */}
               <div className="text-center border-b pb-4 mb-4">
                 <p className="text-xs font-bold uppercase tracking-wider text-gray-500">
-                  SPECIAL PACKAGE PRICE
+                  KERALA TOUR SPECIAL OFFER
                 </p>
                 <div className="flex items-baseline justify-center gap-1 my-1">
-                  <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0B3996]">
-                    ₹18,999*
+                  <span className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B3996]">
+                    Get Best Quote
                   </span>
                 </div>
                 <p className="text-xs font-extrabold text-[#0B3996] uppercase tracking-wider">
-                  PER PERSON (MIN 2 PAX)
+                  100% CUSTOMIZABLE • BEST PRICE GUARANTEE
                 </p>
               </div>
 
@@ -144,7 +144,7 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick }) => {
                   className="w-full h-12 sm:h-13 bg-[#FF4B00] hover:bg-[#e04200] text-white font-extrabold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 group cursor-pointer focus:outline-none"
                   id="hero-instant-quote-btn"
                 >
-                  <span>GET INSTANT QUOTE</span>
+                  <span>GET BEST QUOTE</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
 

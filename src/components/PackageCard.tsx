@@ -1,6 +1,6 @@
 import React from 'react';
 import { PackageItem } from '../types';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight, Star, Clock, Zap } from 'lucide-react';
 import { WHATSAPP_NUMBER } from '../data/tourData';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -11,7 +11,7 @@ interface PackageCardProps {
 }
 
 export const PackageCard: React.FC<PackageCardProps> = ({ pkg, onViewDetails, onGetQuote }) => {
-  const priceInfo = pkg.id === 'pkg-6n7d' ? '₹18,999*' : 'Best Price Quote';
+  const priceInfo = 'Best Price Quote';
   const whatsappMsg = encodeURIComponent(
     `Hi MyHappyJourney, I am interested in the "${pkg.title}" (${pkg.durationBadge} - ${priceInfo}). Please share package details, itinerary, and availability.`
   );
@@ -46,6 +46,12 @@ export const PackageCard: React.FC<PackageCardProps> = ({ pkg, onViewDetails, on
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         
+        {/* Top-Right Speed Badge */}
+        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-xs text-emerald-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-sm border border-emerald-200/80 flex items-center gap-1 z-10">
+          <Zap className="w-3 h-3 text-emerald-600 fill-emerald-600 animate-pulse" />
+          <span>Get quote in 10 minutes</span>
+        </div>
+
         {/* Duration Badge */}
         <div className="absolute bottom-3 left-3 bg-[#0B3996] text-white text-xs font-black px-3 py-1 rounded-md shadow-md uppercase tracking-wider">
           {pkg.durationBadge}
@@ -78,36 +84,29 @@ export const PackageCard: React.FC<PackageCardProps> = ({ pkg, onViewDetails, on
 
         {/* Card Footer: Price & CTA */}
         <div className="pt-3 border-t border-gray-100">
-          {pkg.id === 'pkg-6n7d' ? (
-            <div className="flex items-baseline justify-between mb-3">
-              <div>
-                <p className="text-[10px] uppercase font-bold text-gray-400">Special Package Price</p>
-                <div className="flex items-baseline gap-1.5">
-                  <span className="font-black text-xl sm:text-2xl text-[#FF4B00]">
-                    ₹{pkg.price.toLocaleString('en-IN')}*
-                  </span>
-                  {pkg.originalPrice && (
-                    <span className="text-xs text-gray-400 line-through font-medium">
-                      ₹{pkg.originalPrice.toLocaleString('en-IN')}
-                    </span>
-                  )}
-                </div>
-              </div>
-              <span className="text-[10px] text-[#0B3996] font-extrabold bg-[#EBF2FF] px-2 py-1 rounded">Per Person (Min 2 Pax)</span>
-            </div>
-          ) : (
-            <div className="flex items-center justify-between mb-3 py-0.5">
-              <div>
-                <p className="text-[10px] uppercase font-bold text-gray-400">Package Pricing</p>
-                <span className="font-black text-lg sm:text-xl text-[#0B3996]">
-                  GET BEST PRICE →
-                </span>
-              </div>
-              <span className="text-[10px] text-[#0B3996] font-extrabold bg-[#EBF2FF] px-2 py-1 rounded">
-                Best Rate
+          
+          {/* Fast Response Guarantee Pill */}
+          <div className="flex items-center justify-between gap-1 text-[11px] font-extrabold text-emerald-800 bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200/80 mb-3">
+            <span className="flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+              <span>Get quote in 10 minutes</span>
+            </span>
+            <span className="text-[10px] font-black uppercase text-emerald-700 bg-white px-1.5 py-0.5 rounded border border-emerald-200">
+              ⚡ Instant
+            </span>
+          </div>
+
+          <div className="flex items-center justify-between mb-3 py-0.5">
+            <div>
+              <p className="text-[10px] uppercase font-bold text-gray-400">Package Pricing</p>
+              <span className="font-black text-lg sm:text-xl text-[#0B3996]">
+                GET BEST QUOTE →
               </span>
             </div>
-          )}
+            <span className="text-[10px] text-[#0B3996] font-extrabold bg-[#EBF2FF] px-2 py-1 rounded">
+              Best Rate
+            </span>
+          </div>
 
           <div className="space-y-2">
             <div className="grid grid-cols-2 gap-2">
@@ -123,7 +122,7 @@ export const PackageCard: React.FC<PackageCardProps> = ({ pkg, onViewDetails, on
                   pkg.isPopular ? 'bg-[#FF4B00] hover:bg-[#e04200]' : 'bg-[#0B3996] hover:bg-[#082b75]'
                 }`}
               >
-                <span>{pkg.id === 'pkg-6n7d' ? 'GET QUOTE' : 'GET BEST PRICE'}</span>
+                <span>GET BEST QUOTE</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
