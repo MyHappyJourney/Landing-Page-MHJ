@@ -9,8 +9,13 @@ export interface PackageItem {
   price: number;
   originalPrice?: number;
   isPopular?: boolean;
+  tag?: string;
+  rating?: number;
+  reviewsCount?: number;
+  nightSplit?: { name: string; nights: number }[];
   image: string;
   highlights: string[];
+  inclusions?: { icon: string; label: string }[];
 }
 
 export interface ItineraryDay {

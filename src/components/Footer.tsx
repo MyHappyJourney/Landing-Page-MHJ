@@ -43,10 +43,10 @@ export const Footer: React.FC<FooterProps> = ({ onQuoteClick }) => {
               Kerala Packages
             </h4>
             <ul className="space-y-2 text-xs text-gray-400 font-medium">
-              <li><a href="#packages-section" className="hover:text-white transition-colors">4N / 5D Munnar Thekkady Alleppey (GET BEST PRICE →)</a></li>
-              <li><a href="#packages-section" className="hover:text-white transition-colors">5N / 6D Munnar Thekkady Kovalam (GET BEST PRICE →)</a></li>
-              <li><a href="#packages-section" className="text-amber-400 font-bold hover:underline">6N / 7D Complete Kerala Package (₹18,999*)</a></li>
-              <li><a href="#packages-section" className="hover:text-white transition-colors">7N / 8D Grand Odyssey & Poovar (GET BEST PRICE →)</a></li>
+              <li><a href="#packages-section" className="hover:text-white transition-colors">4N / 5D Kerala Delight (₹15,999*)</a></li>
+              <li><a href="#packages-section" className="hover:text-white transition-colors">5N / 6D Kerala Explorer (₹20,999*)</a></li>
+              <li><a href="#packages-section" className="text-amber-400 font-bold hover:underline">6N / 7D Complete Kerala Package (₹22,999*)</a></li>
+              <li><a href="#packages-section" className="hover:text-white transition-colors">7N / 8D Grand Kerala Odyssey (₹24,499*)</a></li>
               <li><a href="#itinerary-section" className="hover:text-white transition-colors">Customized Honeymoon Packages</a></li>
             </ul>
           </div>

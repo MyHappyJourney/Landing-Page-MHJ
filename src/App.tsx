@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { TrustStrip } from './components/TrustStrip';
@@ -9,9 +9,10 @@ import { Itinerary } from './components/Itinerary';
 import { InclusionsExclusions } from './components/InclusionsExclusions';
 import { WhyBook } from './components/WhyBook';
 import { Reviews } from './components/Reviews';
-import { QuoteForm } from './components/QuoteForm';
+import { ExperienceCarousel } from './components/ExperienceCarousel';
 import { FAQ } from './components/FAQ';
 import { StickyMobileCTA } from './components/StickyMobileCTA';
+import { GroupFloatingButton } from './components/GroupFloatingButton';
 import { Footer } from './components/Footer';
 import { PackageItem } from './types';
 
@@ -19,6 +20,15 @@ export default function App() {
   const [selectedPackageForModal, setSelectedPackageForModal] = useState<PackageItem | null>(null);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState<boolean>(false);
   const [quotePackageId, setQuotePackageId] = useState<string>('pkg-6n7d');
+
+  // Auto pop the lead form modal after exactly 7 seconds of page load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsQuoteModalOpen(true);
+    }, 7000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const openQuoteModal = (pkgId?: string) => {
     if (pkgId) {
@@ -48,14 +58,14 @@ export default function App() {
         {/* 3. Trust Strip */}
         <TrustStrip />
 
-        {/* 4. Tour Itinerary (6N / 7D) */}
-        <Itinerary />
-
-        {/* 5. Choose Your Kerala Tour (Package Cards & Carousel) */}
+        {/* 4. Choose Your Kerala Tour (Package Cards & Carousel) */}
         <PackageSection
           onViewDetails={(pkg) => setSelectedPackageForModal(pkg)}
           onGetQuote={(pkg) => openQuoteModal(pkg.id)}
         />
+
+        {/* 5. Tour Itinerary (6N / 7D) */}
+        <Itinerary />
 
         {/* 6. Loved By 5000+ Happy Travellers (Customer Reviews) */}
         <Reviews />
@@ -66,8 +76,8 @@ export default function App() {
         {/* 8. Why Book With MyHappyJourney */}
         <WhyBook />
 
-        {/* 9. Get Your Customised Quote (Lead Form) */}
-        <QuoteForm preselectedPackageId={quotePackageId} />
+        {/* 9. Real Travel Experiences Automatic Carousel */}
+        <ExperienceCarousel onQuoteClick={() => openQuoteModal()} />
 
         {/* 10. Frequently Asked Questions (FAQs) */}
         <FAQ />
@@ -78,6 +88,9 @@ export default function App() {
 
       {/* 12. Fixed Bottom Mobile CTA Bar */}
       <StickyMobileCTA onQuoteClick={() => openQuoteModal()} />
+
+      {/* 13. Floating Group Tour WhatsApp Button */}
+      <GroupFloatingButton />
 
       {/* Package Details Modal */}
       <PackageModal

@@ -1,6 +1,6 @@
 import React from 'react';
 import { PackageItem } from '../types';
-import { ArrowRight, Star, Clock, Zap } from 'lucide-react';
+import { Zap } from 'lucide-react';
 import { WHATSAPP_NUMBER } from '../data/tourData';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -11,135 +11,148 @@ interface PackageCardProps {
 }
 
 export const PackageCard: React.FC<PackageCardProps> = ({ pkg, onViewDetails, onGetQuote }) => {
-  const priceInfo = 'Best Price Quote';
   const whatsappMsg = encodeURIComponent(
-    `Hi MyHappyJourney, I am interested in the "${pkg.title}" (${pkg.durationBadge} - ${priceInfo}). Please share package details, itinerary, and availability.`
+    `Hi MyHappyJourney, I am interested in "${pkg.title}" (${pkg.durationBadge} - ₹${pkg.price.toLocaleString('en-IN')}/Adult). Please share full itinerary and best quote.`
   );
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`;
 
+  const originalPriceFormatted = pkg.originalPrice
+    ? `₹${pkg.originalPrice.toLocaleString('en-IN')}`
+    : `₹${(pkg.price + 4000).toLocaleString('en-IN')}`;
+
+  const totalTwoAdults = (pkg.price * 2).toLocaleString('en-IN');
+
   return (
     <div
-      className={`bg-white rounded-2xl overflow-hidden flex flex-col h-full border transition-all duration-300 hover:shadow-xl ${
+      className={`bg-white rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col h-full transition-all duration-300 shadow-sm hover:shadow-xl ${
         pkg.isPopular
-          ? 'border-[#FF4B00] shadow-md ring-2 ring-[#FF4B00]/20 relative'
-          : 'border-gray-200 shadow-xs hover:border-gray-300'
+          ? 'border-2 border-[#FF4B00] relative ring-2 ring-[#FF4B00]/15'
+          : 'border border-gray-200'
       }`}
     >
-      {/* Most Popular Badge Banner */}
+      {/* Most Popular Choice Banner */}
       {pkg.isPopular && (
-        <div className="bg-[#FF4B00] text-white text-[11px] font-black uppercase tracking-wider text-center py-1.5 px-3 flex items-center justify-center gap-1">
-          <Star className="w-3.5 h-3.5 fill-white" />
+        <div className="bg-[#FF4B00] text-white text-xs sm:text-sm font-black uppercase tracking-wider text-center py-2 px-3 flex items-center justify-center gap-1.5">
+          <span>★</span>
           <span>MOST POPULAR CHOICE</span>
         </div>
       )}
 
       {/* Card Image */}
-      <div className="relative h-44 sm:h-48 overflow-hidden bg-gray-100">
+      <div className="relative h-52 sm:h-56 overflow-hidden bg-gray-100 group">
         <img
           src={pkg.image}
           alt={pkg.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           referrerPolicy="no-referrer"
           onError={(e) => {
-            e.currentTarget.src = "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80";
+            e.currentTarget.src =
+              'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80';
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        
+
         {/* Top-Right Speed Badge */}
-        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-xs text-emerald-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-sm border border-emerald-200/80 flex items-center gap-1 z-10">
-          <Zap className="w-3 h-3 text-emerald-600 fill-emerald-600 animate-pulse" />
+        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-xs text-emerald-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm border border-emerald-300 flex items-center gap-1.5 z-10">
+          <Zap className="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />
           <span>Get quote in 10 minutes</span>
         </div>
 
-        {/* Duration Badge */}
-        <div className="absolute bottom-3 left-3 bg-[#0B3996] text-white text-xs font-black px-3 py-1 rounded-md shadow-md uppercase tracking-wider">
+        {/* Bottom-Left Duration Badge */}
+        <div className="absolute bottom-3 left-3 bg-[#0B3996] text-white text-xs font-black px-3.5 py-1.5 rounded-lg shadow-md uppercase tracking-wider">
           {pkg.durationBadge}
         </div>
       </div>
 
-      {/* Card Body */}
-      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
-        <div>
-          {/* Title */}
-          <h3 className="font-extrabold text-base sm:text-lg text-gray-900 leading-snug mb-2">
+      {/* Card Content Area */}
+      <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+        <div className="space-y-3.5">
+          {/* Package Title */}
+          <h3 className="font-extrabold text-xl sm:text-2xl text-gray-900 tracking-tight leading-snug">
             {pkg.title}
           </h3>
 
-          {/* Route Description */}
-          <p className="text-xs sm:text-sm font-semibold text-gray-700 bg-[#F6F7F6] p-2.5 rounded-lg border border-gray-100 mb-3">
-            📍 {pkg.route}
-          </p>
+          {/* Route Box */}
+          <div className="bg-[#F6F7F8] p-3 rounded-xl border border-gray-100 flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-800">
+            <span className="text-base leading-none">📍</span>
+            <span className="leading-snug">{pkg.route}</span>
+          </div>
 
-          {/* Highlights preview */}
-          <ul className="space-y-1.5 mb-4 text-xs text-gray-600">
-            {pkg.highlights.slice(0, 3).map((item, idx) => (
-              <li key={idx} className="flex items-start gap-1.5">
-                <span className="text-[#0B3996] font-bold">✓</span>
-                <span className="line-clamp-1">{item}</span>
-              </li>
+          {/* Bullet Highlights */}
+          <div className="space-y-2 pt-1 text-xs sm:text-sm text-gray-700">
+            {pkg.highlights.map((highlight, idx) => (
+              <div key={idx} className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold leading-tight">✓</span>
+                <span className="leading-snug text-gray-700 font-medium">{highlight}</span>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
 
-        {/* Card Footer: Price & CTA */}
-        <div className="pt-3 border-t border-gray-100">
-          
-          {/* Fast Response Guarantee Pill */}
-          <div className="flex items-center justify-between gap-1 text-[11px] font-extrabold text-emerald-800 bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200/80 mb-3">
-            <span className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
-              <span>Get quote in 10 minutes</span>
-            </span>
-            <span className="text-[10px] font-black uppercase text-emerald-700 bg-white px-1.5 py-0.5 rounded border border-emerald-200">
-              ⚡ Instant
-            </span>
-          </div>
-
-          <div className="flex items-center justify-between mb-3 py-0.5">
-            <div>
-              <p className="text-[10px] uppercase font-bold text-gray-400">Package Pricing</p>
-              <span className="font-black text-lg sm:text-xl text-[#0B3996]">
-                GET BEST QUOTE →
+        {/* Bottom Section: Price Box & CTAs */}
+        <div className="space-y-3 pt-2">
+          {/* Starting Price Box */}
+          <div className="bg-[#FEF9E7] p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border border-[#F6E3A0] min-h-[110px] sm:min-h-[116px] flex flex-col justify-between">
+            <div className="flex items-center justify-between gap-1 mb-1">
+              <span className="bg-[#F7E7BA] text-[#865108] text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded whitespace-nowrap">
+                STARTING PRICE OF THIS PACKAGE
+              </span>
+              <span className="text-xs sm:text-sm font-semibold text-gray-400 line-through shrink-0">
+                {originalPriceFormatted}
               </span>
             </div>
-            <span className="text-[10px] text-[#0B3996] font-extrabold bg-[#EBF2FF] px-2 py-1 rounded">
-              Best Rate
-            </span>
-          </div>
 
-          <div className="space-y-2">
-            <div className="grid grid-cols-2 gap-2">
+            <div className="flex items-center justify-between gap-2 my-0.5">
+              <div className="flex items-baseline shrink-0">
+                <span className="text-[#FF4B00] font-black text-lg sm:text-xl leading-none">₹</span>
+                <span className="text-xl sm:text-2xl font-black text-gray-900 leading-none ml-0.5">
+                  {pkg.price.toLocaleString('en-IN')}
+                </span>
+                <span className="text-xs font-semibold text-gray-600 ml-1">
+                  / Adult
+                </span>
+              </div>
+
               <button
                 onClick={() => onViewDetails(pkg)}
-                className="w-full py-2.5 px-2 bg-[#F6F7F6] hover:bg-gray-200 text-gray-800 text-xs font-bold rounded-xl border border-gray-200 transition-colors cursor-pointer"
+                className="text-[#0B3996] hover:text-[#082a74] font-bold text-xs sm:text-sm hover:underline cursor-pointer flex items-center gap-0.5 whitespace-nowrap"
+                id={`view-itinerary-${pkg.id}`}
               >
-                VIEW DETAILS
-              </button>
-              <button
-                onClick={() => onGetQuote(pkg)}
-                className={`w-full py-2.5 px-2 text-white text-xs font-bold rounded-xl shadow-xs transition-colors flex items-center justify-center gap-1 cursor-pointer ${
-                  pkg.isPopular ? 'bg-[#FF4B00] hover:bg-[#e04200]' : 'bg-[#0B3996] hover:bg-[#082b75]'
-                }`}
-              >
-                <span>GET BEST QUOTE</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>View Itinerary</span>
+                <span>→</span>
               </button>
             </div>
 
+            <p className="text-xs font-bold text-emerald-800">
+              Total ₹{totalTwoAdults} for 2 Adults
+            </p>
+          </div>
+
+          {/* Action CTAs: WhatsApp (English) + Get Quote in 10 Min */}
+          <div className="grid grid-cols-2 gap-2 pt-1">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-2.5 px-2 bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-extrabold rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+              className="w-full h-11 px-2 bg-[#25D366] hover:bg-[#20bd5a] active:scale-98 text-white font-bold text-xs sm:text-sm rounded-xl shadow-xs hover:shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer select-none"
               id={`whatsapp-btn-${pkg.id}`}
             >
-              <WhatsAppIcon className="w-4 h-4 fill-white" />
-              <span>WHATSAPP {pkg.durationBadge}</span>
+              <WhatsAppIcon className="w-4 h-4 fill-white shrink-0" />
+              <span className="whitespace-nowrap">WhatsApp</span>
             </a>
+
+            <button
+              type="button"
+              onClick={() => onGetQuote(pkg)}
+              className="w-full h-11 px-2 bg-[#FF4B00] hover:bg-[#e04200] active:scale-98 text-white font-black text-[11px] sm:text-xs rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1 cursor-pointer select-none"
+              id={`get-quote-btn-${pkg.id}`}
+            >
+              <Zap className="w-3.5 h-3.5 fill-white text-white shrink-0" />
+              <span className="whitespace-nowrap uppercase tracking-tight">GET QUOTE IN 10 MIN</span>
+            </button>
           </div>
         </div>
       </div>
     </div>
   );
 };
+

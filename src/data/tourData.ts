@@ -5,6 +5,7 @@ export const DISPLAY_PHONE = "+91 81974 17772";
 export const WHATSAPP_NUMBER = "918197417772";
 export const ENQUIRY_EMAIL = "mhjenquiry@gmail.com";
 export const WHATSAPP_DEFAULT_MSG = encodeURIComponent("Hi MyHappyJourney, I am interested in your Kerala Tour Packages. Please share more details and a quote.");
+export const WHATSAPP_GROUP_MSG = encodeURIComponent("Hi MyHappyJourney, I am planning a Kerala tour for a group of more than 9 people. Please share special group discounts, custom itinerary, and quote details.");
 
 export const PACKAGES: PackageItem[] = [
   {
@@ -13,17 +14,29 @@ export const PACKAGES: PackageItem[] = [
     durationBadge: "4 NIGHTS / 5 DAYS",
     nights: 4,
     days: 5,
+    tag: "BEST VALUE",
+    rating: 4.9,
+    reviewsCount: 840,
     route: "2N Munnar • 1N Thekkady • 1N Alleppey",
+    nightSplit: [
+      { name: "Munnar", nights: 2 },
+      { name: "Thekkady", nights: 1 },
+      { name: "Alleppey", nights: 1 }
+    ],
     locations: ["Munnar (2N)", "Thekkady (1N)", "Alleppey (1N)"],
-    price: 14999,
-    originalPrice: 18999,
-    image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80",
+    price: 15999,
+    originalPrice: 19999,
+    image: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/gaurav-kumar-vAFqjkz0oPQ-unsplash.jpg",
     highlights: [
       "2 Nights in scenic Munnar Hill Station",
       "Periyar Wildlife Sanctuary in Thekkady",
-      "Overnight Houseboat Cruise in Alleppey with all meals",
-      "Private AC vehicle for all transfers & sightseeing",
-      "Daily breakfast & handpicked 3-star accommodations"
+      "Overnight Houseboat Cruise in Alleppey with all meals"
+    ],
+    inclusions: [
+      { icon: "Hotel", label: "3★ / 4★ Hotels" },
+      { icon: "Car", label: "Private AC Cab" },
+      { icon: "Ship", label: "Deluxe Houseboat" },
+      { icon: "Utensils", label: "Meals Included" }
     ]
   },
   {
@@ -32,17 +45,29 @@ export const PACKAGES: PackageItem[] = [
     durationBadge: "5 NIGHTS / 6 DAYS",
     nights: 5,
     days: 6,
-    route: "2N Munnar • 1N Thekkady • 1N Alleppey • 1N Kovalam",
-    locations: ["Munnar (2N)", "Thekkady (1N)", "Alleppey (1N)", "Kovalam (1N)"],
-    price: 17999,
-    originalPrice: 22499,
-    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+    tag: "HONEYMOON PICK",
+    rating: 4.9,
+    reviewsCount: 1120,
+    route: "2N Munnar • 1N Alleppey Houseboat • 2N Kovalam",
+    nightSplit: [
+      { name: "Munnar", nights: 2 },
+      { name: "Alleppey Houseboat", nights: 1 },
+      { name: "Kovalam", nights: 2 }
+    ],
+    locations: ["Munnar (2N)", "Alleppey Houseboat (1N)", "Kovalam (2N)"],
+    price: 20999,
+    originalPrice: 26999,
+    image: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/kunal-kalra-0vS3dp4mo9U-unsplash.jpg",
     highlights: [
-      "Munnar Tea Gardens & Waterfalls",
-      "Thekkady Spice Plantations & Boat Safari",
-      "Traditional Alleppey Deluxe Houseboat Stay",
-      "Beach relaxation at Kovalam Lighthouse Beach",
-      "Private AC Sedan/SUV driver throughout"
+      "2 Nights in lush Munnar Tea Gardens & Waterfalls",
+      "1 Night Traditional Alleppey Deluxe Houseboat Stay with meals",
+      "2 Nights Beachside relaxation at Kovalam & Poovar Island"
+    ],
+    inclusions: [
+      { icon: "Hotel", label: "3★ / 4★ Hotels" },
+      { icon: "Car", label: "Private AC Cab" },
+      { icon: "Ship", label: "Houseboat Stay" },
+      { icon: "Utensils", label: "Breakfast & Meals" }
     ]
   },
   {
@@ -51,18 +76,31 @@ export const PACKAGES: PackageItem[] = [
     durationBadge: "6 NIGHTS / 7 DAYS",
     nights: 6,
     days: 7,
+    tag: "MOST POPULAR",
+    rating: 5.0,
+    reviewsCount: 2350,
     route: "2N Munnar • 1N Thekkady • 1N Alleppey • 2N Kovalam",
+    nightSplit: [
+      { name: "Munnar", nights: 2 },
+      { name: "Thekkady", nights: 1 },
+      { name: "Alleppey", nights: 1 },
+      { name: "Kovalam", nights: 2 }
+    ],
     locations: ["Munnar (2N)", "Thekkady (1N)", "Alleppey (1N)", "Kovalam (2N)"],
-    price: 18999,
-    originalPrice: 24999,
+    price: 22999,
+    originalPrice: 28999,
     isPopular: true,
-    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80",
+    image: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/abhishek-singh-t0MLNrCLsL4-unsplash.jpg",
     highlights: [
       "Comprehensive God's Own Country tour",
       "2 Nights Munnar Hill station & Tea Museum",
-      "1 Night Thekkady Spice Garden & Lake Cruise",
-      "1 Night Luxury Private Houseboat in Backwaters",
-      "2 Nights Beachside luxury at Kovalam & Poovar Island trip"
+      "1 Night Thekkady Spice Garden & Lake Cruise"
+    ],
+    inclusions: [
+      { icon: "Hotel", label: "Premium 3★/4★ Stays" },
+      { icon: "Car", label: "Private AC Cab" },
+      { icon: "Ship", label: "Deluxe Houseboat" },
+      { icon: "Utensils", label: "All Meals Onboard" }
     ]
   },
   {
@@ -71,17 +109,31 @@ export const PACKAGES: PackageItem[] = [
     durationBadge: "7 NIGHTS / 8 DAYS",
     nights: 7,
     days: 8,
+    tag: "GRAND LUXURY",
+    rating: 4.9,
+    reviewsCount: 970,
     route: "2N Munnar • 1N Thekkady • 1N Alleppey • 2N Kovalam • 1N Trivandrum",
+    nightSplit: [
+      { name: "Munnar", nights: 2 },
+      { name: "Thekkady", nights: 1 },
+      { name: "Alleppey", nights: 1 },
+      { name: "Kovalam", nights: 2 },
+      { name: "Trivandrum", nights: 1 }
+    ],
     locations: ["Munnar (2N)", "Thekkady (1N)", "Alleppey (1N)", "Kovalam (2N)", "Trivandrum (1N)"],
-    price: 22999,
-    originalPrice: 29999,
-    image: "https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=800&q=80",
+    price: 24499,
+    originalPrice: 30999,
+    image: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/ravi-chembula-RCRxQOyPzaM-unsplash%20%281%29.jpg",
     highlights: [
       "Complete end-to-end Kerala experience",
       "All major hill stations, sanctuaries, backwaters & beaches",
-      "Visit Padmanabhaswamy Temple & Trivandrum heritage",
-      "Poovar Golden Sand Beach & Backwater Boating",
-      "24x7 Dedicated Travel Manager Assistance"
+      "Visit Padmanabhaswamy Temple & Trivandrum heritage"
+    ],
+    inclusions: [
+      { icon: "Hotel", label: "Luxury 4★ Stays" },
+      { icon: "Car", label: "Private AC Sedan/SUV" },
+      { icon: "Ship", label: "Deluxe Houseboat" },
+      { icon: "Utensils", label: "Breakfast & Meals" }
     ]
   }
 ];
@@ -342,3 +394,87 @@ export const TRUST_ITEMS: TrustItem[] = [
     subtitle: "Customer Support"
   }
 ];
+
+export interface TravelExperience {
+  id: string;
+  url: string;
+  title: string;
+  location: string;
+  description?: string;
+}
+
+export const TRAVEL_EXPERIENCES: TravelExperience[] = [
+  {
+    id: "exp-1",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/Screenshot%202026-08-29%20at%204.51.11%E2%80%AFPM.png",
+    title: "Dining Experience",
+    location: "Kerala Hospitality"
+  },
+  {
+    id: "exp-2",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/ThekkadyPeriyarRiver.jpg",
+    title: "Periyar Boating & Wildlife",
+    location: "Thekkady"
+  },
+  {
+    id: "exp-3",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/kids-having-fun-in-the-beach-with-their-mother.jpg",
+    title: "Beachside Fun & Sunshine",
+    location: "Kovalam Beach"
+  },
+  {
+    id: "exp-4",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/Screenshot%202026-08-29%20at%205.01.54%E2%80%AFPM.png",
+    title: "Dedicated Private AC Cab",
+    location: "Kerala Sightseeing"
+  },
+  {
+    id: "exp-5",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/Screenshot%202026-08-29%20at%205.09.56%E2%80%AFPM.png",
+    title: "Happy Travelers at Munnar Tea Gardens",
+    location: "Munnar Hills"
+  },
+  {
+    id: "exp-6",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/hb.jpg",
+    title: "Traditional Deluxe Houseboat Cruise",
+    location: "Alleppey Backwaters"
+  },
+  {
+    id: "exp-7",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/padmanabhaswamy.webp",
+    title: "Padmanabhaswamy Temple Heritage",
+    location: "Trivandrum"
+  },
+  {
+    id: "exp-8",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/landing%20page%202.webp",
+    title: "Scenic Landscapes of Munnar",
+    location: "Munnar"
+  },
+  {
+    id: "exp-9",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/honeymoon.webp",
+    title: "Romantic Honeymoon Getaways",
+    location: "Kerala"
+  },
+  {
+    id: "exp-10",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/group%20tour.webp",
+    title: "Memorable Group Tours",
+    location: "Kerala Holidays"
+  },
+  {
+    id: "exp-11",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/group%203.webp",
+    title: "Family & Group Celebrations",
+    location: "Kerala Sightseeing"
+  },
+  {
+    id: "exp-12",
+    url: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/cab.webp",
+    title: "Premium AC Cab Fleet & Chauffeurs",
+    location: "Kerala Transfers"
+  }
+];
+
