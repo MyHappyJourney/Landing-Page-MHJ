@@ -369,7 +369,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     >
                       {PACKAGES.map((pkg) => (
                         <option key={pkg.id} value={pkg.id}>
-                          {pkg.durationBadge} ({pkg.title}) - GET BEST QUOTE
+                          {pkg.durationBadge} ({pkg.title}) - GET QUOTE IN 10 MINS
                         </option>
                       ))}
                     </select>
@@ -493,7 +493,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        <span>GET INSTANT QUOTE</span>
+                        <span>GET QUOTE IN 10 MINS</span>
                       </>
                     )}
                   </button>

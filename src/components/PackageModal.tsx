@@ -230,7 +230,7 @@ export const PackageModal: React.FC<PackageModalProps> = ({ pkg, onClose, onGetQ
             }}
             className="w-full py-3 bg-[#FF4B00] hover:bg-[#e04200] text-white font-extrabold rounded-xl text-center text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md cursor-pointer"
           >
-            <span>Get Best Quote</span>
+            <span>Get Quote in 10 Mins</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

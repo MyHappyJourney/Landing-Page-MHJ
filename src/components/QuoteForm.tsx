@@ -216,7 +216,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
                     {formProgress < 25 && "Step 1: Enter your name"}
                     {formProgress >= 25 && formProgress < 60 && "Step 2: Enter 10-digit mobile number"}
                     {formProgress >= 60 && formProgress < 85 && "Step 3: Pick travel date"}
-                    {formProgress >= 85 && "Step 4: Click 'Get Instant Quote'"}
+                    {formProgress >= 85 && "Step 4: Click 'Get Quote in 10 Mins'"}
                   </p>
                 )}
               </div>
@@ -326,7 +326,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
                     >
                       {PACKAGES.map((pkg) => (
                         <option key={pkg.id} value={pkg.id}>
-                          {pkg.durationBadge} ({pkg.title}) - GET BEST QUOTE
+                          {pkg.durationBadge} ({pkg.title}) - GET QUOTE IN 10 MINS
                         </option>
                       ))}
                     </select>
@@ -450,7 +450,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
                     ) : (
                       <>
                         <Send className="w-5 h-5" />
-                        <span>GET INSTANT QUOTE</span>
+                        <span>GET QUOTE IN 10 MINS</span>
                       </>
                     )}
                   </button>

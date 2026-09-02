@@ -357,7 +357,7 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick, preselectedPackageId }
                         {formProgress < 25 && "Step 1: Enter your name"}
                         {formProgress >= 25 && formProgress < 60 && "Step 2: Enter 10-digit mobile number"}
                         {formProgress >= 60 && formProgress < 85 && "Step 3: Pick travel date"}
-                        {formProgress >= 85 && "Step 4: Click 'Get Best Quote'"}
+                        {formProgress >= 85 && "Step 4: Click 'Get Quote in 10 Mins'"}
                       </p>
                     )}
                   </div>
@@ -470,7 +470,7 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick, preselectedPackageId }
                         >
                           {PACKAGES.map((pkg) => (
                             <option key={pkg.id} value={pkg.id}>
-                              {pkg.durationBadge} ({pkg.title}) - GET BEST QUOTE
+                              {pkg.durationBadge} ({pkg.title}) - GET QUOTE IN 10 MINS
                             </option>
                           ))}
                         </select>
@@ -594,7 +594,7 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick, preselectedPackageId }
                         ) : (
                           <>
                             <Send className="w-4 h-4" />
-                            <span>GET BEST QUOTE</span>
+                            <span>GET QUOTE IN 10 MINS</span>
                           </>
                         )}
                       </button>
