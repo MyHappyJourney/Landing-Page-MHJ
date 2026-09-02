@@ -60,9 +60,16 @@ export const Reviews: React.FC = () => {
               <div>
                 {/* Google Logo & Rating */}
                 <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-1 text-amber-400">
-                    {[...Array(rev.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current" />
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-4 h-4 ${
+                          i < rev.rating
+                            ? 'text-amber-400 fill-amber-400'
+                            : 'text-gray-200 fill-gray-200'
+                        }`}
+                      />
                     ))}
                   </div>
                   <svg className="w-5 h-5 opacity-80" viewBox="0 0 24 24">
@@ -79,16 +86,21 @@ export const Reviews: React.FC = () => {
               </div>
 
               {/* Reviewer Details */}
-              <div className="pt-3 border-t border-gray-100 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#0B3996] text-white font-black text-xs flex items-center justify-center shrink-0 uppercase">
-                  {rev.name[0]}
+              <div className="pt-3 border-t border-gray-100 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-[#0B3996] text-white font-black text-xs flex items-center justify-center shrink-0 uppercase">
+                    {rev.name[0]}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-xs sm:text-sm text-gray-900 leading-tight">
+                      — {rev.name}
+                    </h4>
+                    <p className="text-[11px] text-gray-500 font-medium">{rev.location}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-xs sm:text-sm text-gray-900 leading-tight">
-                    — {rev.name}
-                  </h4>
-                  <p className="text-[11px] text-gray-500 font-medium">{rev.location}</p>
-                </div>
+                {rev.date && (
+                  <span className="text-[11px] text-gray-400 font-medium">{rev.date}</span>
+                )}
               </div>
             </div>
           ))}
@@ -109,9 +121,16 @@ export const Reviews: React.FC = () => {
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-1 text-amber-400">
-                      {[...Array(rev.rating)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                    <div className="flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-3.5 h-3.5 ${
+                            i < rev.rating
+                              ? 'text-amber-400 fill-amber-400'
+                              : 'text-gray-200 fill-gray-200'
+                          }`}
+                        />
                       ))}
                     </div>
                     <span className="text-[10px] font-bold text-gray-400">Google Review</span>
@@ -122,16 +141,21 @@ export const Reviews: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-gray-100 flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-[#0B3996] text-white font-bold text-xs flex items-center justify-center shrink-0 uppercase">
-                    {rev.name[0]}
+                <div className="pt-3 border-t border-gray-100 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-full bg-[#0B3996] text-white font-bold text-xs flex items-center justify-center shrink-0 uppercase">
+                      {rev.name[0]}
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-xs text-gray-900 leading-tight">
+                        — {rev.name}
+                      </h4>
+                      <p className="text-[10px] text-gray-500 font-medium">{rev.location}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-xs text-gray-900 leading-tight">
-                      — {rev.name}
-                    </h4>
-                    <p className="text-[10px] text-gray-500 font-medium">{rev.location}</p>
-                  </div>
+                  {rev.date && (
+                    <span className="text-[10px] text-gray-400 font-medium">{rev.date}</span>
+                  )}
                 </div>
               </div>
             ))}

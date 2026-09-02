@@ -312,6 +312,22 @@ export const REVIEWS: Review[] = [
     rating: 5,
     comment: "The Alleppey houseboat was clean, food was superb, and our driver Prasad was super polite. 10/10 service!",
     date: "2 months ago"
+  },
+  {
+    id: "rev-5",
+    name: "Vikram & Sneha Patel",
+    location: "Ahmedabad",
+    rating: 5,
+    comment: "Booked the 5N/6D Kerala package for our anniversary. The Munnar resort had breathtaking valley views and the team arranged a special candle-light dinner on the houseboat!",
+    date: "3 weeks ago"
+  },
+  {
+    id: "rev-6",
+    name: "Karthik R.",
+    location: "Coimbatore",
+    rating: 4,
+    comment: "Overall a great trip! The private cab was very clean and Munnar was mesmerizing. Houseboat check-in took 20 mins extra due to festival rush, but the staff managed everything well and food was delicious.",
+    date: "1 month ago"
   }
 ];
 
