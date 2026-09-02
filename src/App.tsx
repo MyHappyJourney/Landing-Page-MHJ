@@ -40,7 +40,10 @@ export default function App() {
 
       <main>
         {/* 2. Hero Section */}
-        <Hero onQuoteClick={() => openQuoteModal()} />
+        <Hero
+          onQuoteClick={() => openQuoteModal()}
+          preselectedPackageId={quotePackageId}
+        />
 
         {/* 3. Trust Strip */}
         <TrustStrip />

@@ -326,7 +326,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
                     >
                       {PACKAGES.map((pkg) => (
                         <option key={pkg.id} value={pkg.id}>
-                          {pkg.durationBadge} ({pkg.title}) - {pkg.id === 'pkg-6n7d' ? `₹${pkg.price.toLocaleString('en-IN')}*` : 'GET BEST PRICE'}
+                          {pkg.durationBadge} ({pkg.title}) - GET BEST QUOTE
                         </option>
                       ))}
                     </select>

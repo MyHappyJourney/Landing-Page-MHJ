@@ -157,7 +157,7 @@ export const Header: React.FC<HeaderProps> = ({ onQuoteClick, onPackageSelect })
                   className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-[#EBF2FF] hover:text-[#0B3996] flex items-center justify-between pl-5 bg-amber-50/60"
                 >
                   <span className="font-semibold text-gray-900">6N / 7D Package (Popular)</span>
-                  <span className="text-xs text-[#FF4B00] font-bold">₹19,999*</span>
+                  <span className="text-xs text-[#0B3996] font-bold">GET BEST PRICE →</span>
                 </button>
 
                 <button
