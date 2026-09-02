@@ -112,22 +112,23 @@ export const PACKAGES: PackageItem[] = [
     tag: "GRAND LUXURY",
     rating: 4.9,
     reviewsCount: 970,
-    route: "2N Munnar • 1N Thekkady • 1N Alleppey • 2N Kovalam • 1N Trivandrum",
+    route: "1N Cochin • 2N Munnar • 1N Thekkady • 1N Alleppey Houseboat • 2N Kovalam",
     nightSplit: [
+      { name: "Cochin", nights: 1 },
       { name: "Munnar", nights: 2 },
       { name: "Thekkady", nights: 1 },
-      { name: "Alleppey", nights: 1 },
-      { name: "Kovalam", nights: 2 },
-      { name: "Trivandrum", nights: 1 }
+      { name: "Alleppey Houseboat", nights: 1 },
+      { name: "Kovalam", nights: 2 }
     ],
-    locations: ["Munnar (2N)", "Thekkady (1N)", "Alleppey (1N)", "Kovalam (2N)", "Trivandrum (1N)"],
+    locations: ["Cochin (1N)", "Munnar (2N)", "Thekkady (1N)", "Alleppey Houseboat (1N)", "Kovalam (2N)"],
     price: 24499,
     originalPrice: 30999,
     image: "https://hczb7fxersozfdoh.public.blob.vercel-storage.com/ravi-chembula-RCRxQOyPzaM-unsplash%20%281%29.jpg",
     highlights: [
-      "Complete end-to-end Kerala experience",
-      "All major hill stations, sanctuaries, backwaters & beaches",
-      "Visit Padmanabhaswamy Temple & Trivandrum heritage"
+      "1 Night Cochin Heritage & Marine Drive",
+      "2 Nights Munnar Tea Gardens & Waterfalls",
+      "1 Night Thekkady Wildlife Sanctuary & Spices",
+      "1 Night Alleppey Houseboat & 2 Nights Kovalam Beach"
     ],
     inclusions: [
       { icon: "Hotel", label: "Luxury 4★ Stays" },
