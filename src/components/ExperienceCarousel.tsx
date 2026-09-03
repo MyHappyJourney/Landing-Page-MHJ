@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Sparkles, Camera, ChevronLeft, ChevronRight, MapPin, Play, Pause } from 'lucide-react';
+import { Sparkles, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
 import { TRAVEL_EXPERIENCES } from '../data/tourData';
 
 interface ExperienceCarouselProps {
@@ -64,8 +64,6 @@ export const ExperienceCarousel: React.FC<ExperienceCarouselProps> = ({ onQuoteC
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [prevSlide, nextSlide]);
 
-  const currentExp = TRAVEL_EXPERIENCES[currentIndex];
-
   return (
     <section id="travel-experiences" className="py-14 sm:py-20 bg-gradient-to-b from-white via-slate-50/50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -114,52 +112,24 @@ export const ExperienceCarousel: React.FC<ExperienceCarouselProps> = ({ onQuoteC
                   className="w-full h-full object-cover object-center transform transition-transform duration-1000 ease-out group-hover:scale-105"
                   loading={idx === 0 ? 'eager' : 'lazy'}
                 />
-
-                {/* Dark Gradient Overlay for Contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/20 pointer-events-none" />
               </div>
             ))}
 
-            {/* Top Navigation & Status Bar */}
-            <div className="absolute top-4 sm:top-6 left-4 sm:left-6 right-4 sm:right-6 flex items-center justify-between z-20 pointer-events-none">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider shadow-md">
-                <MapPin className="w-3.5 h-3.5 text-[#FF7A00]" />
-                <span>{currentExp.location}</span>
-              </span>
-
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setIsPlaying((prev) => !prev)}
-                  aria-label={isPlaying ? "Pause autoplay" : "Play autoplay"}
-                  className="pointer-events-auto bg-black/60 hover:bg-black/80 backdrop-blur-md text-white p-1.5 sm:p-2 rounded-full border border-white/20 transition-all cursor-pointer shadow-md active:scale-95"
-                  title={isPlaying ? "Pause auto-slide" : "Start auto-slide"}
-                >
-                  {isPlaying ? (
-                    <Pause className="w-3.5 h-3.5" />
-                  ) : (
-                    <Play className="w-3.5 h-3.5 fill-current" />
-                  )}
-                </button>
-                <span className="bg-white/95 backdrop-blur-md text-gray-900 text-xs font-black px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full shadow-md flex items-center gap-1.5">
-                  <Camera className="w-3.5 h-3.5 text-[#0B3996]" />
-                  <span>{currentIndex + 1} / {totalSlides}</span>
-                </span>
-              </div>
-            </div>
-
-            {/* Bottom Slide Info Content */}
-            <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 z-20 text-left pointer-events-none">
-              <div className="inline-flex items-center gap-1.5 text-yellow-400 text-xs font-bold uppercase tracking-wider mb-1">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Real Kerala Tour Experience</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-md tracking-tight mb-1.5">
-                {currentExp.title}
-              </h3>
-              <p className="text-xs sm:text-sm md:text-base text-gray-200 font-medium line-clamp-2 max-w-2xl drop-shadow">
-                Verified MyHappyJourney guest moment captured across God&apos;s Own Country with 4.9★ rated hospitality.
-              </p>
+            {/* Top Right Controls (Autoplay Toggle) */}
+            <div className="absolute top-4 sm:top-6 right-4 sm:right-6 z-20">
+              <button
+                type="button"
+                onClick={() => setIsPlaying((prev) => !prev)}
+                aria-label={isPlaying ? "Pause autoplay" : "Play autoplay"}
+                className="bg-black/50 hover:bg-black/75 backdrop-blur-md text-white p-2 rounded-full border border-white/20 transition-all cursor-pointer shadow-md active:scale-95"
+                title={isPlaying ? "Pause auto-slide" : "Start auto-slide"}
+              >
+                {isPlaying ? (
+                  <Pause className="w-4 h-4" />
+                ) : (
+                  <Play className="w-4 h-4 fill-current" />
+                )}
+              </button>
             </div>
 
             {/* Previous Slide Arrow */}
