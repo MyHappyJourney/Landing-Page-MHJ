@@ -18,7 +18,8 @@ import {
   Clock,
   Car,
   Hotel,
-  Utensils
+  Utensils,
+  Star
 } from 'lucide-react';
 import { WHATSAPP_NUMBER, WHATSAPP_DEFAULT_MSG, PACKAGES } from '../data/tourData';
 import { WhatsAppIcon } from './WhatsAppIcon';
@@ -140,19 +141,20 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick, preselectedPackageId }
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`;
 
   return (
-    <section id="hero-section" className="relative bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white overflow-hidden">
-      {/* Background Hero Image with Dark Gradient Overlay */}
+    <section id="hero-section" className="relative bg-slate-900 text-white overflow-hidden">
+      {/* Background Hero Image with 100% clarity */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=2560&q=90"
+          src="https://hczb7fxersozfdoh.public.blob.vercel-storage.com/hero%20image.avif"
           alt="Kerala Houseboat Backwaters Alleppey"
-          className="w-full h-full object-cover object-center opacity-75 scale-105 transition-all duration-1000 brightness-105"
+          className="w-full h-full object-cover object-center opacity-100"
           referrerPolicy="no-referrer"
           onError={(e) => {
-            e.currentTarget.src = "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=2560&q=90";
+            e.currentTarget.src = "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=2560&q=95";
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/65 to-black/40" />
+        {/* Subtle lateral gradient scrim to maintain readability of text without washing out or darkening the photo */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent pointer-events-none" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-12 sm:pb-16">
@@ -163,23 +165,18 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick, preselectedPackageId }
             {/* Tagline Badge */}
             <div className="inline-flex items-center gap-2 bg-[#0B3996]/90 backdrop-blur-md text-white text-xs sm:text-sm font-extrabold px-3.5 py-1.5 rounded-full border border-blue-400/30 shadow-md">
               <Sparkles className="w-3.5 h-3.5 text-yellow-300 animate-pulse" />
-              <span>EXPLORE GOD'S OWN COUNTRY 🌴</span>
+              <span>LIMITED SEATS — EXCLUSIVE OFFERS!!</span>
             </div>
 
             {/* Main Title */}
             <div>
-              <h1 className="text-3xl sm:text-5xl lg:text-5xl font-black tracking-tight leading-tight text-white drop-shadow-md">
-                KERALA <br />
-                <span className="text-amber-400">TOUR PACKAGES</span>
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                Explore God's <br />
+                <span className="text-amber-300">Own Country</span>
               </h1>
               <p className="text-sm sm:text-base text-gray-200 mt-2 font-medium">
                 Experience authentic backwaters, mist-covered tea hills, pristine beaches, and deluxe houseboats with customizable itineraries.
               </p>
-            </div>
-
-            {/* Duration Badge */}
-            <div className="inline-block bg-[#0B3996] text-white font-extrabold text-xs sm:text-base px-4 sm:px-5 py-2 rounded-full uppercase tracking-wider shadow-lg border border-blue-400/40">
-              6 NIGHTS • 7 DAYS (ALL POPULAR ROUTES)
             </div>
 
             {/* Itinerary Route Pills */}
@@ -231,19 +228,115 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick, preselectedPackageId }
               </div>
             </div>
 
-            {/* Quick Trust Highlights */}
-            <div className="grid grid-cols-3 gap-2 pt-1 text-center text-xs text-gray-200">
-              <div className="bg-white/10 backdrop-blur-xs border border-white/10 rounded-xl py-2 px-2">
-                <p className="font-extrabold text-amber-300 text-sm sm:text-base">18+ Years</p>
-                <p className="text-[10px] sm:text-xs text-gray-300">Since 2007</p>
+            {/* Platform Ratings & Review Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2 pt-1 max-w-xl">
+              {/* Card 1: Google */}
+              <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-full px-2.5 py-1.5 flex items-center gap-2 shadow-md hover:border-white/40 transition-all">
+                <div className="flex -space-x-2 shrink-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=80&h=80&q=80"
+                    alt="Reviewer"
+                    className="w-5.5 h-5.5 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full ring-1.5 ring-white/90 object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80"
+                    alt="Reviewer"
+                    className="w-5.5 h-5.5 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full ring-1.5 ring-white/90 object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=80"
+                    alt="Reviewer"
+                    className="w-5.5 h-5.5 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full ring-1.5 ring-white/90 object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="min-w-0 pr-0.5">
+                  <div className="flex items-center gap-1 leading-none">
+                    <span className="text-white font-black text-xs md:text-sm leading-none">4.9</span>
+                    <div className="flex items-center gap-0.5 text-amber-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-[10px] md:text-[10.5px] text-gray-300 font-medium tracking-tight mt-0.5 whitespace-nowrap leading-none">
+                    2,100+ · Google
+                  </p>
+                </div>
               </div>
-              <div className="bg-white/10 backdrop-blur-xs border border-white/10 rounded-xl py-2 px-2">
-                <p className="font-extrabold text-amber-300 text-sm sm:text-base">5,000+</p>
-                <p className="text-[10px] sm:text-xs text-gray-300">Happy Travellers</p>
+
+              {/* Card 2: TripAdvisor */}
+              <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-full px-2.5 py-1.5 flex items-center gap-2 shadow-md hover:border-white/40 transition-all">
+                <div className="flex -space-x-2 shrink-0">
+                  <div className="w-5.5 h-5.5 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full ring-1.5 ring-white/90 bg-[#7B52BA] text-white font-bold text-[10px] flex items-center justify-center shrink-0">
+                    A
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80&q=80"
+                    alt="Reviewer"
+                    className="w-5.5 h-5.5 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full ring-1.5 ring-white/90 object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&h=80&q=80"
+                    alt="Reviewer"
+                    className="w-5.5 h-5.5 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full ring-1.5 ring-white/90 object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="min-w-0 pr-0.5">
+                  <div className="flex items-center gap-1 leading-none">
+                    <span className="text-white font-black text-xs md:text-sm leading-none">4.8</span>
+                    <div className="flex items-center gap-0.5 text-amber-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-[10px] md:text-[10.5px] text-gray-300 font-medium tracking-tight mt-0.5 whitespace-nowrap leading-none">
+                    1,800+ · TripAdvisor
+                  </p>
+                </div>
               </div>
-              <div className="bg-white/10 backdrop-blur-xs border border-white/10 rounded-xl py-2 px-2">
-                <p className="font-extrabold text-amber-300 text-sm sm:text-base">4.9 ★</p>
-                <p className="text-[10px] sm:text-xs text-gray-300">Google Rating</p>
+
+              {/* Card 3: Facebook */}
+              <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-full px-2.5 py-1.5 flex items-center gap-2 shadow-md hover:border-white/40 transition-all">
+                <div className="flex -space-x-2 shrink-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&h=80&q=80"
+                    alt="Reviewer"
+                    className="w-5.5 h-5.5 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full ring-1.5 ring-white/90 object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=80&h=80&q=80"
+                    alt="Reviewer"
+                    className="w-5.5 h-5.5 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full ring-1.5 ring-white/90 object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="w-5.5 h-5.5 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full ring-1.5 ring-white/90 bg-[#FAD2E1] flex items-center justify-center shrink-0">
+                    <svg className="w-3.5 h-3.5 text-emerald-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="9" stroke="#E11D48" />
+                      <circle cx="12" cy="12" r="4" stroke="#0D9488" />
+                      <path d="M12 3v18M3 12h18" stroke="#F59E0B" strokeWidth="1.2" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="min-w-0 pr-0.5">
+                  <div className="flex items-center gap-1 leading-none">
+                    <span className="text-white font-black text-xs md:text-sm leading-none">5.0</span>
+                    <div className="flex items-center gap-0.5 text-amber-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-[10px] md:text-[10.5px] text-gray-300 font-medium tracking-tight mt-0.5 whitespace-nowrap leading-none">
+                    1,100+ · Facebook
+                  </p>
+                </div>
               </div>
             </div>
           </div>

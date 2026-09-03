@@ -8,12 +8,12 @@ import { QuoteModal } from './components/QuoteModal';
 import { Itinerary } from './components/Itinerary';
 import { InclusionsExclusions } from './components/InclusionsExclusions';
 import { WhyBook } from './components/WhyBook';
+import { ReadyToExploreBanner } from './components/ReadyToExploreBanner';
 import { Reviews } from './components/Reviews';
 import { ExperienceCarousel } from './components/ExperienceCarousel';
 import { GroupDiscountBanner } from './components/GroupDiscountBanner';
 import { FAQ } from './components/FAQ';
 import { StickyMobileCTA } from './components/StickyMobileCTA';
-import { GroupFloatingButton } from './components/GroupFloatingButton';
 import { Footer } from './components/Footer';
 import { PackageItem } from './types';
 
@@ -22,11 +22,11 @@ export default function App() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState<boolean>(false);
   const [quotePackageId, setQuotePackageId] = useState<string>('pkg-6n7d');
 
-  // Auto pop the lead form modal after exactly 7 seconds of page load
+  // Auto pop the lead form modal after exactly 20 seconds of page load
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsQuoteModalOpen(true);
-    }, 7000);
+    }, 20000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -77,14 +77,17 @@ export default function App() {
         {/* 8. Why Book With MyHappyJourney */}
         <WhyBook />
 
+        {/* Ready to Explore Kerala Flash Sale Parallax Banner */}
+        <ReadyToExploreBanner onQuoteClick={() => openQuoteModal()} />
+
         {/* 9. Real Travel Experiences Automatic Carousel */}
         <ExperienceCarousel onQuoteClick={() => openQuoteModal()} />
 
-        {/* 10. Bigger Group Parallax Discount Banner */}
-        <GroupDiscountBanner />
-
-        {/* 11. Frequently Asked Questions (FAQs) */}
+        {/* 10. Frequently Asked Questions (FAQs) */}
         <FAQ />
+
+        {/* 11. Bigger Group Parallax Discount Banner (Below FAQ) */}
+        <GroupDiscountBanner />
       </main>
 
       {/* 12. Footer */}
@@ -92,9 +95,6 @@ export default function App() {
 
       {/* 13. Fixed Bottom Mobile CTA Bar */}
       <StickyMobileCTA onQuoteClick={() => openQuoteModal()} />
-
-      {/* 14. Floating Group Tour WhatsApp Button */}
-      <GroupFloatingButton />
 
       {/* Package Details Modal */}
       <PackageModal

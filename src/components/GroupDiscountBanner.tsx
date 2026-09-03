@@ -6,28 +6,25 @@ export const GroupDiscountBanner: React.FC = () => {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_GROUP_MSG}`;
 
   return (
-    <section className="relative py-16 sm:py-20 lg:py-24 bg-fixed bg-center bg-cover overflow-hidden bg-[#0C324F]"
+    <section 
+      className="relative py-16 sm:py-24 lg:py-28 bg-fixed bg-center bg-cover overflow-hidden"
       style={{
-        backgroundImage: `linear-gradient(to right, rgba(12, 50, 79, 0.94), rgba(16, 64, 102, 0.92)), url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1920&q=80')`
+        backgroundImage: `url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=2560&q=95')`
       }}
     >
-      {/* Decorative ambient lighting elements */}
-      <div className="absolute inset-0 bg-radial from-blue-500/10 via-transparent to-transparent pointer-events-none" />
-
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Top Users Icon Badge */}
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/10 border border-white/15 text-amber-400 mb-6 shadow-inner backdrop-blur-xs">
-          <Users className="w-6 h-6 stroke-[2]" />
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-black/40 border border-white/25 text-amber-400 mb-6 shadow-lg">
+          <Users className="w-7 h-7 stroke-[2.2]" />
         </div>
 
         {/* Primary Headline */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-black text-white tracking-tight leading-tight mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-black text-white tracking-tight leading-tight mb-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
           Bigger Group? Exclusive Discounts Up to 65% OFF!
         </h2>
 
         {/* Subtitle description */}
-        <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-blue-100/90 font-normal leading-relaxed mb-8 sm:mb-9">
+        <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-white font-medium leading-relaxed mb-8 sm:mb-9 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
           Planning for 10+ people? We specialise in corporate retreats, family reunions, and large-group adventures across Kerala with unbeatable group rates!
         </p>
 
@@ -38,7 +35,7 @@ export const GroupDiscountBanner: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             id="group-discount-whatsapp-btn"
-            className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] active:scale-98 text-white font-bold text-sm sm:text-base px-7 py-3.5 sm:py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-200"
+            className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] active:scale-98 text-white font-bold text-sm sm:text-base px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-200 hover:scale-[1.02]"
           >
             {/* WhatsApp SVG / Icon */}
             <svg className="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
@@ -47,7 +44,6 @@ export const GroupDiscountBanner: React.FC = () => {
             <span>Chat on WhatsApp for Group Deals</span>
           </a>
         </div>
-
       </div>
     </section>
   );
