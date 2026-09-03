@@ -179,7 +179,7 @@ export const Header: React.FC<HeaderProps> = ({ onQuoteClick, onPackageSelect })
                   onClick={() => handleNavClick(undefined, 'itinerary-section')}
                   className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-[#EBF2FF] hover:text-[#0B3996] flex items-center justify-between"
                 >
-                  <span>7 Days Itinerary</span>
+                  <span>Why Kerala</span>
                   <ChevronRight className="w-4 h-4 text-gray-400" />
                 </button>
 

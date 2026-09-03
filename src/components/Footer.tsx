@@ -59,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onQuoteClick }) => {
             <ul className="space-y-2 text-xs text-gray-400 font-medium">
               <li><a href="#hero-section" className="hover:text-white transition-colors">Home</a></li>
               <li><a href="#packages-section" className="hover:text-white transition-colors">Choose Packages</a></li>
-              <li><a href="#itinerary-section" className="hover:text-white transition-colors">7 Days Tour Itinerary</a></li>
+              <li><a href="#itinerary-section" className="hover:text-white transition-colors">Why Kerala (6 Reasons)</a></li>
               <li><a href="#inclusions-section" className="hover:text-white transition-colors">Inclusions & Exclusions</a></li>
               <li><a href="#reviews-section" className="hover:text-white transition-colors">5000+ Guest Reviews</a></li>
               <li><a href="#faq-section" className="hover:text-white transition-colors">Frequently Asked Questions</a></li>

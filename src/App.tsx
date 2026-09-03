@@ -10,6 +10,7 @@ import { InclusionsExclusions } from './components/InclusionsExclusions';
 import { WhyBook } from './components/WhyBook';
 import { Reviews } from './components/Reviews';
 import { ExperienceCarousel } from './components/ExperienceCarousel';
+import { GroupDiscountBanner } from './components/GroupDiscountBanner';
 import { FAQ } from './components/FAQ';
 import { StickyMobileCTA } from './components/StickyMobileCTA';
 import { GroupFloatingButton } from './components/GroupFloatingButton';
@@ -79,17 +80,20 @@ export default function App() {
         {/* 9. Real Travel Experiences Automatic Carousel */}
         <ExperienceCarousel onQuoteClick={() => openQuoteModal()} />
 
-        {/* 10. Frequently Asked Questions (FAQs) */}
+        {/* 10. Bigger Group Parallax Discount Banner */}
+        <GroupDiscountBanner />
+
+        {/* 11. Frequently Asked Questions (FAQs) */}
         <FAQ />
       </main>
 
-      {/* 11. Footer */}
+      {/* 12. Footer */}
       <Footer onQuoteClick={() => openQuoteModal()} />
 
-      {/* 12. Fixed Bottom Mobile CTA Bar */}
+      {/* 13. Fixed Bottom Mobile CTA Bar */}
       <StickyMobileCTA onQuoteClick={() => openQuoteModal()} />
 
-      {/* 13. Floating Group Tour WhatsApp Button */}
+      {/* 14. Floating Group Tour WhatsApp Button */}
       <GroupFloatingButton />
 
       {/* Package Details Modal */}
