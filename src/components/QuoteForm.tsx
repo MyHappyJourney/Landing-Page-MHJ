@@ -4,6 +4,7 @@ import { submitLead } from '../services/leadService';
 import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User, DollarSign, Mail, MapPin, ExternalLink, Sparkles } from 'lucide-react';
 import { WHATSAPP_NUMBER, PACKAGES } from '../data/tourData';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { Loader } from './Loader';
 
 interface QuoteFormProps {
   preselectedPackageId?: string;
@@ -116,7 +117,17 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
     <section id="quote-section" className="py-12 sm:py-16 bg-[#EBF2FF] border-t border-b border-[#0B3996]/20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-10 border border-[#0B3996]/20">
+        <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-10 border border-[#0B3996]/20 relative overflow-hidden">
+          
+          {/* Loading Overlay with Uiverse Loader */}
+          {loading && (
+            <div className="absolute inset-0 z-40 bg-[#071739]/95 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-fade-in rounded-3xl">
+              <Loader
+                title="Submitting your quote request..."
+                subtitle="Hold on while we connect you with our Kerala destination expert"
+              />
+            </div>
+          )}
           
           {submitted ? (
             /* Success View */
@@ -192,11 +203,8 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ preselectedPackageId }) =>
             /* Lead Form View */
             <div>
               <div className="text-center max-w-2xl mx-auto mb-6">
-                <span className="bg-[#EBF2FF] text-[#0B3996] font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full border border-[#0B3996]/20">
-                  FREE CUSTOMIZED QUOTE
-                </span>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 mt-2 tracking-tight">
-                  GET YOUR CUSTOMISED QUOTE
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 tracking-tight">
+                  Get Your Free Quote
                 </h2>
                 <p className="text-xs sm:text-sm font-semibold text-gray-600 mt-1.5">
                   Just fill in your details and we will call you within 30 minutes!

@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { WHATSAPP_NUMBER, WHATSAPP_DEFAULT_MSG, PACKAGES } from '../data/tourData';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { Loader } from './Loader';
 
 interface HeroProps {
   onQuoteClick?: () => void;
@@ -341,10 +342,20 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick, preselectedPackageId }
             </div>
           </div>
 
-          {/* Right Column: Full Interactive "GET YOUR CUSTOMISED QUOTE" Form */}
+          {/* Right Column: Full Interactive "Get Your Free Quote" Form */}
           <div className="lg:col-span-6 w-full">
             <div className="bg-white text-gray-900 rounded-3xl p-5 sm:p-7 shadow-2xl border border-gray-100 relative overflow-hidden">
               
+              {/* Loading State with Uiverse Loader */}
+              {loading && (
+                <div className="absolute inset-0 z-40 bg-[#071739]/95 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-fade-in">
+                  <Loader
+                    title="Submitting your quote request..."
+                    subtitle="Hold on while we connect you with our Kerala destination expert"
+                  />
+                </div>
+              )}
+
               {/* Highlight ribbon */}
               <div className="absolute top-0 right-0 bg-[#0B3996] text-white text-[10px] sm:text-xs font-black px-3.5 py-1 rounded-bl-2xl uppercase tracking-wider flex items-center gap-1 shadow-xs">
                 <Zap className="w-3 h-3 text-yellow-300 fill-yellow-300 animate-pulse" />
@@ -426,11 +437,8 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick, preselectedPackageId }
                 <div>
                   {/* Form Header */}
                   <div className="text-center max-w-xl mx-auto mb-4">
-                    <span className="bg-[#EBF2FF] text-[#0B3996] font-bold text-[11px] sm:text-xs uppercase tracking-widest px-3 py-1 rounded-full border border-[#0B3996]/20">
-                      FREE CUSTOMIZED QUOTE
-                    </span>
-                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 mt-1.5 tracking-tight">
-                      GET YOUR CUSTOMISED QUOTE
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 tracking-tight">
+                      Get Your Free Quote
                     </h2>
                     <p className="text-xs text-gray-600 mt-1 font-semibold">
                       Fill in your details and we will call you within 30 minutes!

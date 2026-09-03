@@ -16,11 +16,22 @@ import { FAQ } from './components/FAQ';
 import { StickyMobileCTA } from './components/StickyMobileCTA';
 import { Footer } from './components/Footer';
 import { PackageItem } from './types';
+import { Loader } from './components/Loader';
 
 export default function App() {
   const [selectedPackageForModal, setSelectedPackageForModal] = useState<PackageItem | null>(null);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState<boolean>(false);
   const [quotePackageId, setQuotePackageId] = useState<string>('pkg-6n7d');
+  const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
+
+  // Initial page load smooth transition
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 900);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Auto pop the lead form modal after exactly 20 seconds of page load
   useEffect(() => {
@@ -43,6 +54,16 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans antialiased selection:bg-[#EBF2FF] selection:text-[#0B3996] pb-[72px] md:pb-0">
       
+      {/* Initial Page Preloader with Uiverse Loader */}
+      {isInitialLoading && (
+        <div className="fixed inset-0 z-[100] bg-[#071739] flex flex-col items-center justify-center transition-opacity duration-500">
+          <Loader
+            title="Loading Kerala Tour Packages..."
+            subtitle="MyHappyJourney • Since 2007"
+          />
+        </div>
+      )}
+
       {/* 1. Header */}
       <Header
         onQuoteClick={() => openQuoteModal()}

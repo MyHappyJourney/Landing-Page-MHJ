@@ -5,6 +5,7 @@ import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User
 import { WHATSAPP_NUMBER, PACKAGES } from '../data/tourData';
 import { Logo } from './Logo';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { Loader } from './Loader';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -166,6 +167,16 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
         onClick={(e) => e.stopPropagation()}
         id="quote-modal-card"
       >
+        {/* Loading Overlay */}
+        {loading && (
+          <div className="absolute inset-0 z-50 bg-[#071739]/95 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-fade-in">
+            <Loader
+              title="Submitting your quote request..."
+              subtitle="Hold on while we connect you with our Kerala destination expert"
+            />
+          </div>
+        )}
+
         {/* Modal Header */}
         <div className="bg-[#0B3996] text-white px-5 sm:px-7 py-4 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
@@ -245,11 +256,8 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
             /* Lead Form View */
             <div>
               <div className="text-center max-w-xl mx-auto mb-4">
-                <span className="bg-[#EBF2FF] text-[#0B3996] font-bold text-[11px] sm:text-xs uppercase tracking-widest px-3 py-1 rounded-full border border-[#0B3996]/20">
-                  FREE CUSTOMIZED QUOTE
-                </span>
-                <h2 className="text-xl sm:text-2xl font-black text-gray-900 mt-2 tracking-tight">
-                  GET YOUR CUSTOMISED QUOTE
+                <h2 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">
+                  Get Your Free Quote
                 </h2>
                 <p className="text-xs font-semibold text-gray-600 mt-1">
                   Fill details below & our Kerala expert will call you within 30 minutes!
