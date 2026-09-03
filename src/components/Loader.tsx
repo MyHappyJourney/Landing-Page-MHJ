@@ -13,8 +13,14 @@ export const Loader: React.FC<LoaderProps> = ({
 }) => {
   return (
     <div className={`flex flex-col items-center justify-center p-6 text-center select-none ${className}`}>
-      <div className="pt-14 pb-2">
-        <div className="loader" />
+      <div className="flex items-center justify-center">
+        <div className="loading">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
       </div>
       {title && (
         <p className="mt-4 text-base sm:text-lg font-bold text-white tracking-wide drop-shadow-sm">
