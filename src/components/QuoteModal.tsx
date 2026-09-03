@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LeadFormData } from '../types';
 import { submitLead } from '../services/leadService';
-import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User, DollarSign, X, Mail, ExternalLink, Sparkles } from 'lucide-react';
+import { Shield, Send, CheckCircle2, MessageSquare, Calendar, Users, Phone, User, DollarSign, X, Mail, MapPin, ExternalLink, Sparkles } from 'lucide-react';
 import { WHATSAPP_NUMBER, PACKAGES } from '../data/tourData';
 import { Logo } from './Logo';
 import { WhatsAppIcon } from './WhatsAppIcon';
@@ -21,6 +21,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
     name: '',
     phone: '',
     email: '',
+    city: '',
     travelDate: '',
     adults: 2,
     children: 0,
@@ -37,11 +38,12 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   // Calculate form completion progress percentage
   const getFormProgress = () => {
     let score = 0;
-    if (formData.name.trim().length >= 2) score += 25;
+    if (formData.name.trim().length >= 2) score += 20;
     const cleanPhone = formData.phone.replace(/\D/g, '');
-    if (cleanPhone.length >= 10) score += 35;
-    if (formData.travelDate) score += 25;
-    if ((formData.email && formData.email.includes('@')) || formData.packagePreference || formData.budget) score += 15;
+    if (cleanPhone.length >= 10) score += 25;
+    if (formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) score += 20;
+    if (formData.city && formData.city.trim().length >= 2) score += 20;
+    if (formData.travelDate) score += 15;
     return Math.min(score, 100);
   };
 
@@ -74,6 +76,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
       name: '',
       phone: '',
       email: '',
+      city: '',
       travelDate: '',
       adults: 2,
       children: 0,
@@ -107,15 +110,26 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
     e.preventDefault();
     setErrorMessage(null);
 
-    // Basic Validation
-    if (!formData.name.trim()) {
-      setErrorMessage('Please enter your name');
+    // Strict Validation
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      setErrorMessage('Please enter your full name');
       return;
     }
 
     const cleanPhone = formData.phone.replace(/\D/g, '');
     if (cleanPhone.length < 10) {
       setErrorMessage('Please enter a valid 10-digit mobile number');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email || !emailRegex.test(formData.email.trim())) {
+      setErrorMessage('Please enter a valid email address');
+      return;
+    }
+
+    if (!formData.city || formData.city.trim().length < 2) {
+      setErrorMessage('Please enter your departure city (e.g. Bangalore, Mumbai)');
       return;
     }
 
@@ -272,8 +286,8 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
               )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Row 1: Name, Phone & Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                {/* Row 1: Name & Phone */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {/* Name */}
                   <div>
                     <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1">
@@ -314,11 +328,14 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                       />
                     </div>
                   </div>
+                </div>
 
+                {/* Row 2: Email & Departure City */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {/* Email Address */}
                   <div>
                     <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1">
-                      Email Address
+                      Email Address <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
@@ -326,9 +343,30 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                       </div>
                       <input
                         type="email"
+                        required
                         value={formData.email || ''}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="e.g. rahul@example.com"
+                        className="w-full pl-9 pr-3 h-11 bg-gray-50 border border-gray-300 rounded-xl text-xs sm:text-sm text-gray-900 focus:bg-white focus:border-[#0B3996] focus:ring-2 focus:ring-[#0B3996]/20 transition-all outline-none font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Departure City */}
+                  <div>
+                    <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1">
+                      Departure City <span className="text-red-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                        <MapPin className="w-4 h-4" />
+                      </div>
+                      <input
+                        type="text"
+                        required
+                        value={formData.city || ''}
+                        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                        placeholder="e.g. Bangalore, Mumbai"
                         className="w-full pl-9 pr-3 h-11 bg-gray-50 border border-gray-300 rounded-xl text-xs sm:text-sm text-gray-900 focus:bg-white focus:border-[#0B3996] focus:ring-2 focus:ring-[#0B3996]/20 transition-all outline-none font-medium"
                       />
                     </div>
