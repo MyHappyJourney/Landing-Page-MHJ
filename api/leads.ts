@@ -7,6 +7,11 @@ export interface CrmLeadInput {
   phone?: string;
   city?: string;
   destination?: string;
+  from_date?: string;
+  duration?: string;
+  adults?: number | string;
+  children?: number | string;
+  budget?: string;
   [key: string]: any;
 }
 
@@ -24,9 +29,9 @@ export interface CrmLeadResponse {
  * Core handler to process and submit lead to iTours CRM
  */
 export async function handleCrmLeadSubmission(body: CrmLeadInput): Promise<CrmLeadResponse> {
-  const { name, email, phone, city, destination } = body || {};
+  const { name, email, phone, city, destination, from_date, duration, adults, children, budget } = body || {};
 
-  // 1. Strict validation of all 5 required iTours CRM fields
+  // 1. Strict validation of all required iTours CRM fields
   if (!name || typeof name !== 'string' || !name.trim() || name.trim().length < 2) {
     return {
       statusCode: 400,
@@ -76,7 +81,18 @@ export async function handleCrmLeadSubmission(body: CrmLeadInput): Promise<CrmLe
   }
 
   const cleanName = name.trim();
-  const cleanDestination = (destination || 'Kerala Tour Packages').toString().trim();
+  const cleanDestination = (destination || 'Kerala').toString().trim();
+
+  // Normalize additional fields
+  const cleanFromDate = (from_date || '').toString().trim();
+  const cleanDuration = (duration || '').toString().trim();
+  const parsedAdults = typeof adults === 'number' ? adults : parseInt((adults || '2').toString(), 10);
+  const cleanAdults = isNaN(parsedAdults) ? 2 : Math.max(1, parsedAdults);
+
+  const parsedChildren = typeof children === 'number' ? children : parseInt((children || '0').toString(), 10);
+  const cleanChildren = isNaN(parsedChildren) ? 0 : Math.max(0, parsedChildren);
+
+  const cleanBudget = (budget || '').toString().trim();
 
   // 2. Fetch server-side CRM configuration
   const crmUrl =
@@ -104,7 +120,12 @@ export async function handleCrmLeadSubmission(body: CrmLeadInput): Promise<CrmLe
     email: cleanEmail,
     phone: cleanPhone,
     city: cleanCity,
-    destination: cleanDestination
+    destination: cleanDestination,
+    from_date: cleanFromDate,
+    duration: cleanDuration,
+    adults: cleanAdults,
+    children: cleanChildren,
+    budget: cleanBudget
   };
 
   // 4. Dispatch to iTours CRM with 8-second timeout

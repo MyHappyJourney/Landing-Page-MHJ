@@ -48,6 +48,10 @@ export async function submitLead(formData: LeadFormData): Promise<LeadSubmission
         ? `${matchedPkg.durationBadge} (${matchedPkg.title})`
         : (formData.packagePreference || 'Kerala Tour Package');
 
+      const durationString = matchedPkg 
+        ? `${matchedPkg.durationBadge} (${matchedPkg.nights}N / ${matchedPkg.days}D)`
+        : (formData.packagePreference || '6 NIGHTS / 7 DAYS (6N / 7D)');
+
       const leadId = `MHJ-${Date.now().toString().slice(-6)}`;
 
       // 1. Dispatch to Server-Side API endpoint (/api/leads) -> iTours CRM
@@ -66,7 +70,12 @@ export async function submitLead(formData: LeadFormData): Promise<LeadSubmission
             email: cleanEmail,
             phone: cleanPhone,
             city: cleanCity,
-            destination: packageName
+            destination: 'Kerala',
+            from_date: formData.travelDate || '',
+            duration: durationString,
+            adults: Number(formData.adults) || 2,
+            children: Number(formData.children) || 0,
+            budget: formData.budget || ''
           })
         });
 
